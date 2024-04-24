@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../assets/logo.svg";
 import ChevronRightPositive from "../assets/chevron-right-blue.svg";
 import { pb } from "../pb";
@@ -25,9 +25,9 @@ const Intro = (props: {
   }, []);
 
   const [faqOpen, setFaqOpen] = useState<Record<string, boolean>>({});
-  const [authError, setAuthError] = useState<string>("");
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  // const [authError, setAuthError] = useState<string>("");
+  // const emailRef = useRef<HTMLInputElement>(null);
+  // const passwordRef = useRef<HTMLInputElement>(null);
 
   return (
     <main
@@ -108,7 +108,7 @@ const Intro = (props: {
                     onClick={() => {
                       props.login();
                       setIsLoading(true);
-                      setShowLogin(true);
+                      // setShowLogin(true);
                     }}
                   >
                     Einloggen
