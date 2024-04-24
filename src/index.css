@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --brand-positive: #69A9C9;
+  --brand-positive-shade: #f0f6fa;
+  --brand-negative: #CC3333;
+  --brand-negative-shade: #fff6f6;
+  --secondary: #F5F5F5;
+}
+
+body {
+  background-color: var(--secondary);
+}
+
+* {
+  user-select: var(--brand-theme-shade);
+}
+
+button.btn {
+  @apply  bg-secondary data-[highlight=true]:bg-brand-positive data-[highlight=true]:text-white data-[active=true]:bg-black data-[active=true]:text-white p-4 rounded-xl outline-none transition-transform focus:-translate-y-1;
+}
+
+.int-btn--blue {
+  @apply px-3 py-2 rounded-xl border-2 bg-brand-positive-shade text-brand-positive border-brand-positive disabled:cursor-not-allowed;
+}
+
+.int-btn--red {
+  @apply px-3 py-2 rounded-xl border-2 bg-brand-negative-shade text-brand-negative border-brand-negative disabled:cursor-not-allowed;
+}
+
+
+.input {
+  @apply px-4 py-2 rounded-lg border-2 transition-colors duration-100 outline-none border-secondary focus-within:border-brand-theme focus-within:bg-brand-theme-shade disabled:bg-secondary;
+}
+
+.embedded-content a {
+  text-decoration: underline;
+  color: var(--brand-theme);
+}
+
