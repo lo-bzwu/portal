@@ -8,11 +8,15 @@ services:
       - "8080:8080"
     depends_on:
       - davinci-cache
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   davinci-cache:
     image: ghcr.io/lo-bzwu/davinci-cache
     environment:
       - DAVINCI_URL=http://stundenplan.cl02.ch/daVinciIS.dll?content=json
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   watchtower:
     image: containrrr/watchtower
