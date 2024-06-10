@@ -12,7 +12,7 @@ docker run --name lo-bzwu-portal -p 8080:8080 lo-bzwu/portal -d
 
 ```bash
 # docker build -t lo-portal .
-docker run -p 8080:8080 ghcr.io/lo-bzwu/portal
+docker run -p 8080:8080 ghcr.io/lo-bzwu/portal:main
 ```
 
 
