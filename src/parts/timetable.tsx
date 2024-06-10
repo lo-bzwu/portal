@@ -209,8 +209,9 @@ function Timetable({ user }: { user: UserType }) {
               <button
                 onClick={() => {
                   const correctedClass = availableClasses.find(
-                    (ac) => ac.toLowerCase() === newClass.toLocaleLowerCase()
+                    (ac) => ac.toLowerCase() === newClass.toLowerCase()
                   );
+                  if (!correctedClass) return alert("Klasse nicht gefunden.");
                   pb.collection("users")
                     .update<UserType>(
                       user.id,
