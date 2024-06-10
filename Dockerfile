@@ -22,6 +22,7 @@ FROM node:18-alpine AS build
 WORKDIR /app
 COPY . .
 
+ENV POCKETBASE_URL="https://lo-bzwu.ch"
 RUN npm install
 RUN npm run build
 
