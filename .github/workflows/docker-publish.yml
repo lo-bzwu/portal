@@ -61,6 +61,7 @@ jobs:
       
   redeploy:
     runs-on: ubuntu-latest
+    needs: build-and-push-image
     steps:
       - name: Redeploy primary instance
         env:
