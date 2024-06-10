@@ -62,7 +62,7 @@ routerAdd("GET", "/api/proxy/menus/next.json", (c) => {
 routerAdd("GET", "/api/ci/update", (c) => {
 
     const res = $http.send({
-    	url: "http://watchtower/v1/update",
+        url: "http://watchtower:8080/v1/update",
         headers: $apis.requestInfo(c).headers,
         method: "GET",
         timeout: 120,
