@@ -70,5 +70,5 @@ routerAdd("GET", "/api/ci/update", (c) => {
 
     for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
 
-    return c.json(res.statusCode, res.json)
+    return c.string(res.statusCode, res.raw)
 })

@@ -15,7 +15,7 @@ export default function Home(): JSX.Element {
     >
       <main className="text-primary" style={{ padding: "24px" }}>
         <h1>Dokumentation des LO-Portals</h1>
-        <a href="./docs/intro">Zur Dokumentation</a>
+        <a href="./docs/docs/intro">Zur Dokumentation</a>
       </main>
     </Layout>
   );
