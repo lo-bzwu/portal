@@ -61,6 +61,8 @@ routerAdd("GET", "/api/proxy/menus/next.json", (c) => {
 
 routerAdd("GET", "/api/ci/update", (c) => {
 
+    c.string(res.statusCode, "Update scheduled.")
+
     const res = $http.send({
         url: "http://watchtower:8080/v1/update",
         headers: $apis.requestInfo(c).headers,
@@ -68,7 +70,5 @@ routerAdd("GET", "/api/ci/update", (c) => {
         timeout: 120,
     })
 
-    for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
 
-    return c.string(res.statusCode, res.raw)
 })
