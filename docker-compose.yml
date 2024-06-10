@@ -4,8 +4,18 @@ services:
     image: ghcr.io/lo-bzwu/portal
     volumes:
       - ./pb_data:/pb/pb_data
+
+  # Reverse Proxy setup:
+  # command: ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080"]
+  # ports:
+  #   - "8080:8080"
+      
+  # Direct Production setup:
+    command: ["/pb/pocketbase", "serve", ${TLS_DOMAIN}]
     ports:
-      - "8080:8080"
+      - "443:443"
+      - "80:80"
+  
     depends_on:
       - davinci-cache
     labels:
@@ -14,7 +24,7 @@ services:
   davinci-cache:
     image: ghcr.io/lo-bzwu/davinci-cache
     environment:
-      - DAVINCI_URL=http://stundenplan.cl02.ch/daVinciIS.dll?content=json
+      - DAVINCI_URL=${DAVINCI_URL}
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
@@ -22,7 +32,7 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --debug --http-api-update --label-enable
+    command: --http-api-update --label-enable
     environment:
       - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
     labels:
