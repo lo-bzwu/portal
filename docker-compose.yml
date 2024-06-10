@@ -1,15 +1,15 @@
 version: "3.8"
 services:
   app:
-    image: lo-website
+    image: ghcr.io/lo-bzwu/portal
     volumes:
       - ./pb_data:/pb/pb_data
     ports:
-      - "32589:8080"
+      - "8080:8080"
     depends_on:
       - davinci-cache
   davinci-cache:
-    image: janic0/davinci-cache
+    image: ghcr.io/lo-bzwu/davinci-cache
     environment:
       - DAVINCI_URL=http://stundenplan.cl02.ch/daVinciIS.dll?content=json
 
