@@ -56,9 +56,9 @@ const Contribute = ({ user }: { user: UserType }) => {
             }}
           >
             <p>
-              Durch dieses Formular können Sie Kontakt zur LO aufnehmen. Ihre
+              Durch dieses Formular kannst du Kontakt zur LO aufnehmen. Deine
               Nachricht wird vertraulich behandelt. Bei Rückfragen werden wir
-              Sie per E-Mail kontaktieren.
+              dich per E-Mail kontaktieren.
               <br />
             </p>
             <input
@@ -73,7 +73,7 @@ const Contribute = ({ user }: { user: UserType }) => {
               onChange={({ target: { value } }) => setMessage(value)}
               autoFocus
               className="h-full input"
-              placeholder="Ihre Nachricht..."
+              placeholder="Deine Nachricht..."
               rows={12}
             />
             <button data-highlight={true} className="btn">

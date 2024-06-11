@@ -8,6 +8,7 @@ import Council from "./pages/council";
 import Contribute from "./pages/contribute";
 import News from "./pages/news";
 import Intro from "./pages/intro";
+import Setup from "./pages/setup";
 
 export interface UserType {
   classes: string[];
@@ -119,6 +120,10 @@ function App() {
         }}
       />
     );
+  else if (!user.introComplete) {
+    return <Setup user={user} />;
+  }
+
   const goToPage = (
     page: keyof typeof pages,
     params: Record<string, string> = {},
