@@ -74,10 +74,10 @@ function Timetable({ user }: { user: UserType }) {
           new URLSearchParams(
             isTeacher
               ? {
-                  teachers: user.teacherCode,
+                  teachers: isTeacher ? user.teacherCode : "",
                 }
               : {
-                  classes: userClasses.join(","),
+                  classes: isTeacher ? "" : userClasses.join(","),
                 }
           ).toString()
       )
