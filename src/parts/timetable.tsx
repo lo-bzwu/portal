@@ -5,7 +5,7 @@ import ChevronRight from "../assets/chevron-right-blue.svg";
 
 import { UserType } from "../App";
 import { pb } from "../pb";
-import ClassSelectorComponent from "../components/selectclasses";
+import ClassSelectorComponent from "../components/selectClasses";
 
 function getSubjectName(code: string, classes: Record<string, string>): string {
   let lookup = classes[code];

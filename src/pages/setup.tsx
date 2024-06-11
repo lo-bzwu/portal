@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import type { UserType } from "../App";
 import Panel from "../components/panel";
-import ClassSelectorComponent from "../components/selectclasses";
+import ClassSelectorComponent from "../components/selectClasses";
 import { pb } from "../pb";
 
 const Setup = ({ user }: { user: UserType }) => {
