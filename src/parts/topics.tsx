@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Panel from "../components/panel";
 import { pb } from "../pb";
 
@@ -21,6 +21,27 @@ function Topics(props: { onTopicClicked: (topic_id: string) => void }) {
         setData(topics.items);
       });
   }, []);
+
+  if (data.length) {
+    return (
+      <Panel title="Mitmachen bei der LO" color="negative">
+        <div className="flex flex-col gap-4 mt-4 h-full">
+          <p>
+            Willst du dich auch für eine noch besser Zukunft am BZWU engagieren?
+          </p>
+          <div className="flex flex-col gap-2 justify-end w-full h-full">
+            <button className="int-btn--red">Mitmachen im Gremium</button>
+            <button className="int-btn--red">
+              Mitmachen beim Socialmedia Team
+            </button>
+            <button className="int-btn--red">
+              Mitmachen bei der Websiteentwicklung
+            </button>
+          </div>
+        </div>
+      </Panel>
+    );
+  }
 
   return (
     <Panel title="Aktuelle Themen" color="negative" loading={data.length === 0}>
