@@ -196,7 +196,7 @@ function App() {
   );
 
   return (
-    <div className="flex flex-col p-4 w-full lg:p-8 md:p-5 md:h-full bg-secondary">
+    <div className="flex flex-col p-4 w-full xl:p-8 md:p-5 md:h-full bg-secondary">
       <nav className="flex flex-col px-6 py-1 w-full rounded-2xl bg-primary h-fit">
         <div className="flex gap-8 items-center w-full">
           <a
