@@ -21,7 +21,12 @@ const Home = ({
       }
     />
     <div className="flex overflow-hidden flex-col gap-4 h-full">
-      <Topics onTopicClicked={(id) => navigate("topics", { topic: id })} />
+      <Topics
+        onContributionOptionClicked={(option) =>
+          navigate("news", undefined, "/" + option.post + "-" + option.slug)
+        }
+        onTopicClicked={(id) => navigate("topics", { topic: id })}
+      />
       <Links classes={user.userSelectedClasses} />
     </div>
   </main>

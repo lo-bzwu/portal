@@ -8,8 +8,21 @@ interface Topic {
   locations: string[];
 }
 
-function Topics(props: { onTopicClicked: (topic_id: string) => void }) {
+interface ContributionOption {
+  id: string;
+  text: string;
+  slug: string;
+  post: string;
+}
+
+function Topics(props: {
+  onTopicClicked: (topic_id: string) => void;
+  onContributionOptionClicked: (option: ContributionOption) => void;
+}) {
   const [data, setData] = useState<Topic[]>([]);
+  const [contributionOptions, setContributionOptions] = useState<
+    ContributionOption[]
+  >([]);
 
   useEffect(() => {
     pb.collection("topics")
@@ -20,23 +33,28 @@ function Topics(props: { onTopicClicked: (topic_id: string) => void }) {
       .then((topics) => {
         setData(topics.items);
       });
+
+    pb.collection("contribution_options")
+      .getList<ContributionOption>(1, 10)
+      .then((newContributionOptions) => {
+        setContributionOptions(newContributionOptions.items);
+      });
   }, []);
 
-  if (data.length) {
+  if (!data.length) {
     return (
       <Panel title="Mitmachen bei der LO" color="negative">
         <div className="flex flex-col gap-4 mt-4 h-full">
           <p>
-            Willst du dich auch für eine noch besser Zukunft am BZWU engagieren?
+            Willst du dich auch für eine noch bessere Zukunft am BZWU
+            engagieren?
           </p>
           <div className="flex flex-col gap-2 justify-end w-full h-full">
-            <button className="int-btn--red">Mitmachen im Gremium</button>
-            <button className="int-btn--red">
-              Mitmachen beim Socialmedia Team
-            </button>
-            <button className="int-btn--red">
-              Mitmachen bei der Websiteentwicklung
-            </button>
+            {contributionOptions.map((option, i) => (
+              <button className="int-btn--red" key={i}>
+                {option.id}
+              </button>
+            ))}
           </div>
         </div>
       </Panel>
