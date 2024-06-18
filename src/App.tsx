@@ -121,7 +121,17 @@ function App() {
       />
     );
   else if (!user.introComplete) {
-    return <Setup user={user} />;
+    return (
+      <Setup
+        user={user}
+        handleSave={() => {
+          setUser((u) => {
+            if (!u) return u;
+            return { ...u, introComplete: true };
+          });
+        }}
+      />
+    );
   }
 
   const goToPage = (

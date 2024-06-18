@@ -4,13 +4,21 @@ import Panel from "../components/panel";
 import ClassSelectorComponent from "../components/selectClasses";
 import { pb } from "../pb";
 
-const Setup = ({ user }: { user: UserType }) => {
+const Setup = ({
+  user,
+  handleSave,
+}: {
+  user: UserType;
+  handleSave: () => void;
+}) => {
   const completeSetup = () => {
-    pb.collection<UserType>("users").update<UserType>(user.id, {
-      introComplete: true,
-      teacherCode: newShortCode,
-      locations: selectedLocations,
-    });
+    pb.collection<UserType>("users")
+      .update<UserType>(user.id, {
+        introComplete: true,
+        teacherCode: newShortCode,
+        locations: selectedLocations,
+      })
+      .then(() => handleSave());
   };
 
   const [selectedLocations, setSelectedLocations] = useState<
