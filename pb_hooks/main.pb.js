@@ -20,12 +20,16 @@ onRecordAfterAuthWithOAuth2Request((e) => {
 
     if (!isLocalTenant) return save();
 
-    const addition = e.oAuth2User.name.slice(tenantIndex + institutionName.length + 1);
-    const classes = addition.split(" ");
     e.record.set('teacherCode', surname.slice(0, 1).toUpperCase() + surname.slice(1, 2).toLowerCase() + givenName.slice(0, 1).toUpperCase() + givenName.slice(1, 2).toLowerCase())
+    const addition = e.oAuth2User.name.slice(tenantIndex + institutionName.length + 1);
+    if (!addition.length) {
+        return save()
+    }
+
+    const classes = addition.split(" ");
     if (classes.length === 0) {
         return save()
-    };
+    }
 
     e.record.set('isLocalStudent', true);
     e.record.set('classes', classes);
