@@ -51,8 +51,12 @@ function Topics(props: {
           </p>
           <div className="flex flex-col gap-2 justify-end w-full h-full">
             {contributionOptions.map((option, i) => (
-              <button className="int-btn--red" key={i}>
-                {option.id}
+              <button
+                className="int-btn--red"
+                key={i}
+                onClick={() => props.onContributionOptionClicked(option)}
+              >
+                {option.text}
               </button>
             ))}
           </div>

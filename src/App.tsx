@@ -75,6 +75,7 @@ function App() {
 
   useEffect(() => {
     let unsubscribeFunc = () => {};
+
     function startWatching(id: string) {
       pb.collection("users").subscribe<UserType>(id, (data) => {
         if (data.action !== "update") return;
