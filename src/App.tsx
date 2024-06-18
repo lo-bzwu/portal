@@ -11,7 +11,7 @@ import Intro from "./pages/intro";
 import Setup from "./pages/setup";
 
 export interface UserType {
-  classes: string[];
+  classes?: string[];
   email: string;
   emailVisibility: boolean;
   firstName: string;
@@ -22,7 +22,7 @@ export interface UserType {
   updated: string;
   collectionId: string;
   teacherCode: string;
-  userSelectedClasses: string[];
+  userSelectedClasses?: string[];
   username: string;
   verified: boolean;
   introComplete: boolean;

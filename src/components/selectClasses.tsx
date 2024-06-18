@@ -5,14 +5,16 @@ import { pb } from "../pb";
 
 function ClassSelectorComponent({ user }: { user: UserType }) {
   const [newClass, setNewClass] = useState("");
-  const [userClasses, setUserClasses] = useState(user.userSelectedClasses);
+  const [userClasses, setUserClasses] = useState<string[]>(
+    user.userSelectedClasses ?? []
+  );
 
   const [availableClasses, setAvailableClasses] = useState<string[]>([]);
   const filteredClasses = availableClasses
     .filter(
       (availableClass) =>
         availableClass.toLowerCase().includes(newClass.toLowerCase()) &&
-        !userClasses.includes(availableClass)
+        !(userClasses ?? [])?.includes(availableClass)
     )
     .slice(0, 7);
 
@@ -52,12 +54,15 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
                     .update<UserType>(
                       user.id,
                       {
-                        userSelectedClasses: [availableClass, ...userClasses],
+                        userSelectedClasses: [
+                          availableClass,
+                          ...(userClasses ?? []),
+                        ],
                       },
                       { fields: "userSelectedClasses" }
                     )
                     .then(({ userSelectedClasses }) =>
-                      setUserClasses(userSelectedClasses)
+                      setUserClasses(userSelectedClasses ?? [])
                     );
                   setNewClass("");
                 }}
@@ -71,7 +76,7 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
           )}
         </div>
       </div>
-      {userClasses.map((c, i) => (
+      {userClasses?.map((c, i) => (
         <div className="flex justify-between items-center rounded-lg" key={i}>
           <p className="">{c}</p>
           <button
@@ -88,7 +93,7 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
                   { fields: "userSelectedClasses" }
                 )
                 .then(({ userSelectedClasses }) =>
-                  setUserClasses(userSelectedClasses)
+                  setUserClasses(userSelectedClasses ?? [])
                 );
             }}
           >

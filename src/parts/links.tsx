@@ -27,7 +27,13 @@ interface Link {
   collectionName: string;
 }
 
-function Links({ classes }: { classes: string[] }) {
+function Links({
+  classes,
+  isTeacher,
+}: {
+  classes: string[];
+  isTeacher: boolean;
+}) {
   const [data, setData] = useState<Link[]>([]);
 
   useEffect(() => {
@@ -35,16 +41,17 @@ function Links({ classes }: { classes: string[] }) {
       .getList<Link>(1, 20, {
         fields: "id,label,url,collectionName,preview,color",
         sort: "+order",
-        filter:
-          "classes = '' || " +
-          classes
-            .map((c) => 'classes ~ "' + c.replace('"', "") + '"')
-            .join(" || "),
+        filter: isTeacher
+          ? "teacherOnly = true"
+          : "teacherOnly = false && classes = '' || " +
+            classes
+              .map((c) => 'classes ~ "' + c.replace('"', "") + '"')
+              .join(" || "),
       })
       .then((links) => {
         setData(links.items);
       });
-  }, [classes]);
+  }, [classes, isTeacher]);
 
   return (
     <Panel title="Weitere Links" color="negative" loading={data.length === 0}>

@@ -14,6 +14,9 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     e.record.set('isLocalTenant', isLocalTenant);
     e.record.set('firstName', givenName);
     e.record.set('lastName', surname);
+    e.record.set('classes', []);
+    e.record.set('_raw', e.oAuth2User);
+    e.record.set('userSelectedClasses', []);
     e.record.setUsername(surname.slice(0, 2).toUpperCase() + givenName.slice(0, 2).toUpperCase() + "-" + e.oAuth2User.id.slice(0, 4));
 
     const save = () => $app.dao().saveRecord(e.record);
@@ -21,6 +24,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     if (!isLocalTenant) return save();
 
     e.record.set('teacherCode', surname.slice(0, 1).toUpperCase() + surname.slice(1, 2).toLowerCase() + givenName.slice(0, 1).toUpperCase() + givenName.slice(1, 2).toLowerCase())
+
     const addition = e.oAuth2User.name.slice(tenantIndex + institutionName.length + 1);
     if (!addition.length) {
         return save()

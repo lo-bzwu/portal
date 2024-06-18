@@ -27,7 +27,10 @@ const Home = ({
         }
         onTopicClicked={(id) => navigate("topics", { topic: id })}
       />
-      <Links classes={user.userSelectedClasses} />
+      <Links
+        classes={user.userSelectedClasses ?? []}
+        isTeacher={user.isLocalTenant && !user.isLocalStudent}
+      />
     </div>
   </main>
 );
