@@ -68,4 +68,4 @@ jobs:
           REDEPLOY_TOKEN: ${{ secrets.REDEPLOY_TOKEN }}
           INSTANCE_URL: ${{ env.INSTANCE_URL }}
         run: | 
-          curl -H "Authorization: Bearer $REDEPLOY_TOKEN" "$INSTANCE_URL/api/ci/update"
+          curl -H "Authorization: Bearer $REDEPLOY_TOKEN" "$INSTANCE_URL/api/ci/update" &
