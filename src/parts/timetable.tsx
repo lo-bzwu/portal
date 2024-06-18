@@ -26,11 +26,7 @@ function makeDateString(date: Date) {
 function Timetable({ user }: { user: UserType }) {
   const [selectedDay, setDay] = useState(new Date());
 
-  const [userClasses, setUserClasses] = useState(user.userSelectedClasses);
-
-  useEffect(() => {
-    setUserClasses(user.userSelectedClasses);
-  }, [user.userSelectedClasses]);
+  const userClasses = useMemo(() => user.userSelectedClasses ?? [], [user]);
 
   const [data, setData] = useState<{
     teachers: Record<string, { first_name: string; last_name: string }>;
@@ -98,7 +94,7 @@ function Timetable({ user }: { user: UserType }) {
     }, 1000 * 60);
 
     return () => clearInterval(interval);
-  }, [userClasses, user.teacherCode, isTeacher]);
+  }, [userClasses, isTeacher, user.teacherCode]);
 
   const weekday = useMemo(() => selectedDay.getDay(), [selectedDay]);
   const dateString = useMemo(() => makeDateString(selectedDay), [selectedDay]);
