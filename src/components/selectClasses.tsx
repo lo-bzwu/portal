@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserType } from "../App";
 import Delete from "../assets/delete.svg";
-import Create from "../assets/create.svg";
 import { pb } from "../pb";
 
 function ClassSelectorComponent({ user }: { user: UserType }) {
