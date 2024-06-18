@@ -101,6 +101,13 @@ function App() {
     } else {
       startWatching(pb.authStore.model?.id);
       setUser(pb.authStore.model as UserType);
+
+      pb.collection("users")
+        .authRefresh()
+        .catch(() => {
+          pb.authStore.clear();
+          window.location.reload();
+        });
     }
 
     window.addEventListener("popstate", (e) => {
