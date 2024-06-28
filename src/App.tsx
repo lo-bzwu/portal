@@ -60,6 +60,8 @@ export type NavigateFunc = (
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
+  AdminService.efal();
+
   const [user, setUser] = useState<null | UserType>(null);
   const [page, setPage] = useState(
     (() => {
