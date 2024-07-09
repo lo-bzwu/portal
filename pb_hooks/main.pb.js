@@ -6,6 +6,8 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     // console.log(e.record) // could be null
     // console.log(e.isNewRecord)
 
+    if (e.record?.introComplete) return;
+
     const institutionName = "BZWU";
     const tenantIndex = e.oAuth2User.name.indexOf(institutionName);
     const isLocalTenant = tenantIndex !== -1;

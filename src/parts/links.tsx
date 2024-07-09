@@ -46,7 +46,8 @@ function Links({
         sort: "+order",
         filter: isTeacher
           ? "teacherOnly = true"
-          : "teacherOnly = false && classes = '' || " +
+          : "teacherOnly = false && classes = ''" +
+            (classes.length > 0 ? " || " : "") +
             classes
               .map((c) => 'classes ~ "' + c.replace('"', "") + '"')
               .join(" || "),
