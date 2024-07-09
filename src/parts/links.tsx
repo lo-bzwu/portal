@@ -35,6 +35,8 @@ function Links({
   isTeacher: boolean;
 }) {
   const [data, setData] = useState<Link[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
     pb.collection("links")
@@ -50,11 +52,18 @@ function Links({
       })
       .then((links) => {
         setData(links.items);
-      });
+        setIsLoaded(true);
+      })
+      .catch(setError);
   }, [classes, isTeacher]);
 
   return (
-    <Panel title="Weitere Links" color="negative" loading={data.length === 0}>
+    <Panel
+      title="Weitere Links"
+      color="negative"
+      loading={!isLoaded}
+      error={error}
+    >
       <div className="flex flex-col gap-2 mt-4">
         {data.map((link) => {
           return (

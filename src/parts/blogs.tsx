@@ -10,21 +10,38 @@ interface NewsItem {
   image: string;
 }
 
-function News(props: { openPost: (id: string, slug: string) => void }) {
+function News(props: {
+  openPost: (id: string, slug: string) => void;
+  userClasses?: string[];
+}) {
   const [data, setData] = useState<NewsItem[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     pb.collection("posts")
       .getList<NewsItem>(1, 20, {
         fields: "title,subtitle,locations,image,id,collectionName",
+        filter:
+          "published = true && " +
+          (props.userClasses ?? [])
+            .map((c) => 'classes ~ "' + c.replace('"', "") + '"')
+            .join(" || "),
       })
       .then((posts) => {
         setData(posts.items);
-      });
+        setIsLoaded(true);
+      })
+      .catch(setError);
   }, []);
 
   return (
-    <Panel title="News der LO" color="positive" loading={data.length === 0}>
+    <Panel
+      title="News der LO"
+      color="positive"
+      loading={!isLoaded}
+      error={error}
+    >
       <div className="flex flex-col gap-4 mt-4">
         {data.map((post) => (
           <button
@@ -39,9 +56,11 @@ function News(props: { openPost: (id: string, slug: string) => void }) {
           >
             {post.image && (
               <div className="relative w-full h-48">
-                <p className="absolute top-4 left-4 z-10 px-2 py-1 text-white rounded-xl bg-brand-theme">
-                  {post.locations.join(", ")}
-                </p>
+                {post.locations?.length && (
+                  <p className="absolute top-4 left-4 z-10 px-2 py-1 text-white rounded-xl bg-brand-theme">
+                    {post.locations.join(", ")}
+                  </p>
+                )}
 
                 <img
                   className="object-cover w-full h-48"

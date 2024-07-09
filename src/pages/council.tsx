@@ -45,6 +45,16 @@ const Council = () => {
   const [councilMembers, setCouncilMembers] = useState<CouncilMember[]>([]);
   const [commissions, setCommissions] = useState<Commission[]>([]);
   const [meetings, setMeetings] = useState<Meeting[]>([]);
+  const [errors, setErrors] = useState({
+    councilMembers: null,
+    commissions: null,
+    meetings: null,
+  });
+  const [loadingStates, setLoadingStates] = useState({
+    councilMembers: false,
+    commissions: false,
+    meetings: false,
+  });
 
   useEffect(() => {
     pb.collection("council_members")
@@ -53,7 +63,11 @@ const Council = () => {
       })
       .then((members) => {
         setCouncilMembers(members.items);
-      });
+        setLoadingStates((prev) => ({ ...prev, councilMembers: true }));
+      })
+      .catch((err) =>
+        setErrors((prev) => ({ ...prev, councilMembers: err.toString() }))
+      );
 
     pb.collection("commissions")
       .getFullList<Commission>({
@@ -61,8 +75,12 @@ const Council = () => {
         expand: "commission_members(commission)",
       })
       .then((result) => {
+        setLoadingStates((prev) => ({ ...prev, commissions: true }));
         setCommissions(result);
-      });
+      })
+      .catch((err) =>
+        setErrors((prev) => ({ ...prev, commissions: err.toString() }))
+      );
 
     pb.collection("meetings")
       .getFullList<Meeting>({
@@ -70,8 +88,12 @@ const Council = () => {
         sort: "-date",
       })
       .then((result) => {
+        setLoadingStates((prev) => ({ ...prev, meetings: true }));
         setMeetings(result);
-      });
+      })
+      .catch((err) =>
+        setErrors((prev) => ({ ...prev, meetings: err.toString() }))
+      );
   }, []);
 
   return (
@@ -79,16 +101,16 @@ const Council = () => {
       <div>
         <Panel
           color="positive"
-          title=""
-          className="relative w-full h-fit"
-          loading={councilMembers.length === 0}
+          title="Gremium"
+          error={errors.councilMembers}
+          className="w-full h-fit"
+          loading={!loadingStates.councilMembers}
         >
-          <h4 className="absolute text-2xl text-brand-theme">Gremium</h4>
           <div className="flex flex-col gap-2 justify-center mt-10 md:gap-4 md:mt-2 md:flex-row">
             {councilMembers.map((member) => (
               <div
                 key={member.id}
-                className="p-2 pr-4 flex items-center gap-8 rounded-xl bg-secondary data-[highlight=true]:bg-brand-theme data-[highlight=true]:text-white"
+                className="p-2 pr-4 flex items-center gap-8 rounded-xl bg-secondary data-[highlight=true]:bg-brand-theme data-[highlight=true]:text-white flex-1"
                 data-highlight={member.highlight}
               >
                 <div className="flex flex-1 gap-4 items-center">
@@ -126,8 +148,9 @@ const Council = () => {
         <Panel
           color="negative"
           title="Sitzungen"
+          error={errors.meetings}
           className="flex-1"
-          loading={meetings.length === 0}
+          loading={!loadingStates.meetings}
         >
           {meetings.map((meeting) => (
             <div
@@ -186,7 +209,8 @@ const Council = () => {
           color="negative"
           title="Kommissionen"
           className="flex-1"
-          loading={commissions.length === 0}
+          loading={!loadingStates.commissions}
+          error={errors.commissions}
         >
           {commissions.map((commission) => {
             const members = commission.expand

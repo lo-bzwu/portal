@@ -13,7 +13,7 @@ const Contribute = ({ user }: { user: UserType }) => {
       <Panel
         title="Beitragen"
         color="positive"
-        loading={loading}
+        loading={!loading}
         className="w-full max-w-screen-sm"
       >
         {submitted ? (

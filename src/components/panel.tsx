@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import Logo from "../assets/logo.svg";
+import Warning from "../assets/warning.svg";
 
 function Panel({
   title,
   actionLabel,
   actionLabelClassName,
   color,
+  error,
   loading,
   children,
   popup,
@@ -14,6 +16,7 @@ function Panel({
 }: {
   title: string;
   loading?: boolean;
+  error?: string | null;
   actionLabel?: string;
   color: "positive" | "negative";
   onPopupOpen?: () => void;
@@ -87,7 +90,12 @@ function Panel({
         )}
       </div>
       <div className="overflow-y-auto">
-        {loading ? (
+        {error ? (
+          <div className="flex flex-col gap-2 justify-center p-4 w-full rounded-xl bg-brand-negative-shade text-brand-negative">
+            <img className="h-8" src={Warning} alt="warning sign" />
+            <p className="w-full text-left whitespace-pre-wrap">{error}</p>
+          </div>
+        ) : loading ? (
           <div className="flex flex-col gap-4 justify-center items-center p-16 w-full">
             <img className="h-16 animate-spin" src={Logo} alt="Logo" />
             <p>Inhalte werden geladen...</p>

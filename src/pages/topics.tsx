@@ -24,6 +24,8 @@ interface Topic {
 const Topics = () => {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null);
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -37,9 +39,11 @@ const Topics = () => {
       })
       .then((topics) => {
         setTopics(topics.items);
+        setLoadingComplete(true);
         if (topics.items.length > 0 && !searchParams.has("topic"))
           setSelectedTopicId(topics.items[0].id);
-      });
+      })
+      .catch(setError);
   }, []);
 
   const selectedTopic = topics.find((topic) => topic.id === selectedTopicId);
@@ -49,7 +53,8 @@ const Topics = () => {
       <Panel
         color="positive"
         title="Themen"
-        loading={topics.length === 0}
+        error={error}
+        loading={!loadingComplete}
         className="md:max-w-[300px]"
       >
         <div className="flex flex-col gap-2 mt-2">

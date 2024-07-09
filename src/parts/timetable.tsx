@@ -25,6 +25,7 @@ function makeDateString(date: Date) {
 
 function Timetable({ user }: { user: UserType }) {
   const [selectedDay, setDay] = useState(new Date());
+  const [error, setError] = useState<string | null>(null);
 
   const userClasses = useMemo(() => user.userSelectedClasses ?? [], [user]);
 
@@ -78,7 +79,8 @@ function Timetable({ user }: { user: UserType }) {
           ).toString()
       )
         .then((r) => r.json())
-        .then((data) => setData({ ...data, result: data.result ?? [] }));
+        .then((data) => setData({ ...data, result: data.result ?? [] }))
+        .catch(setError);
     };
 
     refresh();
@@ -145,6 +147,7 @@ function Timetable({ user }: { user: UserType }) {
       loading={data.result.length === 0}
       title="Stundenplan"
       color="positive"
+      error={error}
       actionLabel={isTeacher ? "" : "Klassen verwalten"}
       actionLabelClassName="int-btn--blue"
       popup={!isTeacher ? <ClassSelectorComponent user={user} /> : false}

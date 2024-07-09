@@ -20,6 +20,7 @@ function Topics(props: {
   onContributionOptionClicked: (option: ContributionOption) => void;
 }) {
   const [data, setData] = useState<Topic[]>([]);
+  // const [error, setError] = useState<null | string>(null);
   const [contributionOptions, setContributionOptions] = useState<
     ContributionOption[]
   >([]);

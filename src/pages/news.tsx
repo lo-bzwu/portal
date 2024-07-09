@@ -15,6 +15,7 @@ interface Post {
 
 const News = ({ navigate }: { navigate: NavigateFunc }) => {
   const [post, setPost] = useState<null | Post>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const id = window.location.pathname.split("/news/")[1];
@@ -23,9 +24,11 @@ const News = ({ navigate }: { navigate: NavigateFunc }) => {
     pb.collection("posts")
       .getOne<Post>(id.split("-")[0])
       .then((p) => {
+        if (!p) return;
         document.title = "BZWU LO | " + p.title;
         setPost(p);
-      });
+      })
+      .catch(setError);
   }, []);
 
   return (
@@ -38,8 +41,9 @@ const News = ({ navigate }: { navigate: NavigateFunc }) => {
           Zurück
         </button>
         <Panel
-          loading={post === null}
+          loading={post === null || error != null}
           title={post?.title ?? ""}
+          error={error}
           color="positive"
           className="flex-1 w-full"
         >

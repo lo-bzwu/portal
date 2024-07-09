@@ -16,6 +16,7 @@ const Home = ({
     <Timetable user={user} />
     <Menus />
     <Blogs
+      userClasses={user.userSelectedClasses}
       openPost={(id, slug) =>
         navigate("news", undefined, "/" + id + "-" + slug)
       }
