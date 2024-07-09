@@ -86,7 +86,10 @@ function Timetable({ user }: { user: UserType }) {
           ).toString()
       )
         .then((r) => r.json())
-        .then((data) => setData({ ...data, result: data.result ?? [] }))
+        .then((data) => {
+          setData({ ...data, result: data.result ?? [] });
+          setError(null);
+        })
         .catch(setError);
     };
 
