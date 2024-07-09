@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { NavigateFunc } from "../App";
 import Panel from "../components/panel";
 import { pb } from "../pb";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 
 interface Post {
   title: string;
@@ -51,7 +51,8 @@ const News = ({ navigate }: { navigate: NavigateFunc }) => {
             <div
               className="mt-2 w-full whitespace-pre-wrap embedded-content"
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(post?.content),
+                // __html: DOMPurify.sanitize(post?.content, {}) post?.content,
+                __html: post?.content,
               }}
             />
           )}
