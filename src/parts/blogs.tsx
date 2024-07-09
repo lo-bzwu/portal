@@ -56,7 +56,7 @@ function News(props: {
           >
             {post.image && (
               <div className="relative w-full h-48">
-                {post.locations?.length && (
+                {post.locations?.length > 0 && (
                   <p className="absolute top-4 left-4 z-10 px-2 py-1 text-white rounded-xl bg-brand-theme">
                     {post.locations.join(", ")}
                   </p>
