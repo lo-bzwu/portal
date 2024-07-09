@@ -4,6 +4,7 @@ import { pb } from "../pb";
 import EmailPositive from "../assets/email-positive.svg";
 import EmailNegative from "../assets/email-negative.svg";
 import { getRelativeTime } from "../utils/time";
+import logPageVisit from "../utils/reportPageVisit";
 
 interface CouncilMember {
   id: string;
@@ -121,6 +122,16 @@ const Council = () => {
                   </div>
                 </div>
                 <a
+                  onClick={() =>
+                    logPageVisit({
+                      page: "council",
+                      external_url: member.email,
+                      props: {
+                        kind: "council_member",
+                        member_id: member.id,
+                      },
+                    })
+                  }
                   href={
                     "mailto:" +
                     member.email +
@@ -177,6 +188,16 @@ const Council = () => {
               </div>
               {meeting.ended ? (
                 <a
+                  onClick={() =>
+                    logPageVisit({
+                      page: "council",
+                      external_url: meeting.protocol_link,
+                      props: {
+                        kind: "meeting_protocol",
+                        meeting_id: meeting.id,
+                      },
+                    })
+                  }
                   target="_blank"
                   rel="noreferrer noopener"
                   className="mt-2 w-full md:w-fit md:mt-0"
@@ -186,6 +207,16 @@ const Council = () => {
                 </a>
               ) : (
                 <a
+                  onClick={() =>
+                    logPageVisit({
+                      page: "council",
+                      external_url: meeting.link,
+                      props: {
+                        kind: "meeting_join",
+                        meeting_id: meeting.id,
+                      },
+                    })
+                  }
                   target="_blank"
                   rel="noreferrer noopener"
                   className="mt-2 w-full md:mt-0 md:w-fit"
@@ -241,6 +272,16 @@ const Council = () => {
                   </div>
 
                   <a
+                    onClick={() =>
+                      logPageVisit({
+                        page: "council",
+                        external_url: leader?.email,
+                        props: {
+                          kind: "commission_contact",
+                          commission_id: commission.id,
+                        },
+                      })
+                    }
                     href={
                       "mailto:" +
                       leader?.email +

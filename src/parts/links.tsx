@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Panel from "../components/panel";
 import { pb } from "../pb";
+import logPageVisit from "../utils/reportPageVisit";
 
 function lightenColor(color: string, percent: number) {
   let R = parseInt(color.substring(1, 3), 16);
@@ -68,6 +69,13 @@ function Links({
         {data.map((link) => {
           return (
             <a
+              onClick={() =>
+                logPageVisit({
+                  page: "home",
+                  external_url: link.url,
+                  props: { kind: "link_click", link_id: link.id },
+                })
+              }
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"

@@ -64,6 +64,13 @@ function Timetable({ user }: { user: UserType }) {
   );
 
   useEffect(() => {
+    if (!isTeacher && !userClasses.length) {
+      setError(
+        "Da Sie keine Lehrperson sind und keine Klassen ausgewählt haben, können keine Stundenplandaten angezeigt werden."
+      );
+      return;
+    }
+
     const refresh = () => {
       fetch(
         pb.buildUrl("/api/proxy/lessons") +

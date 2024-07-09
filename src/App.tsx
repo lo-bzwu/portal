@@ -9,6 +9,7 @@ import Contribute from "./pages/contribute";
 import News from "./pages/news";
 import Intro from "./pages/intro";
 import Setup from "./pages/setup";
+import logPageVisit from "./utils/reportPageVisit";
 
 export interface UserType {
   classes?: string[];
@@ -60,7 +61,9 @@ export type NavigateFunc = (
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-  const [user, setUser] = useState<null | UserType>(null);
+  const [user, setUser] = useState<null | UserType>(
+    pb.authStore.model as UserType
+  );
   const [page, setPage] = useState(
     (() => {
       const path = window.location.pathname;
@@ -74,6 +77,16 @@ function App() {
   const [loginUrl, setLoginUrl] = useState<null | string>(null);
 
   useEffect(() => {
+    logPageVisit({
+      page: page as keyof typeof pages,
+      props: {
+        ...Object.fromEntries(
+          new URLSearchParams(window.location.search).entries()
+        ),
+        isInitialLoad: true,
+      },
+    });
+
     let unsubscribeFunc = () => {};
 
     function startWatching(id: string) {
@@ -151,14 +164,11 @@ function App() {
     window.history.pushState(
       page,
       pages[page].title,
-      pages[page].url +
-        (paramString.length
-          ? "?" + new URLSearchParams(params).toString()
-          : "") +
-        suffix
+      pages[page].url + (paramString.length ? "?" + paramString : "") + suffix
     );
     document.title = pages[page].title;
     setPage(page);
+    setTimeout(() => logPageVisit({ page, props: params, suffix }));
   };
 
   const buttons = (
