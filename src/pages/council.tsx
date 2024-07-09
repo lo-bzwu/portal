@@ -65,9 +65,7 @@ const Council = () => {
         setCouncilMembers(members.items);
         setLoadingStates((prev) => ({ ...prev, councilMembers: true }));
       })
-      .catch((err) =>
-        setErrors((prev) => ({ ...prev, councilMembers: err.toString() }))
-      );
+      .catch((err) => setErrors((prev) => ({ ...prev, councilMembers: err })));
 
     pb.collection("commissions")
       .getFullList<Commission>({
@@ -78,9 +76,7 @@ const Council = () => {
         setLoadingStates((prev) => ({ ...prev, commissions: true }));
         setCommissions(result);
       })
-      .catch((err) =>
-        setErrors((prev) => ({ ...prev, commissions: err.toString() }))
-      );
+      .catch((err) => setErrors((prev) => ({ ...prev, commissions: err })));
 
     pb.collection("meetings")
       .getFullList<Meeting>({
@@ -91,9 +87,7 @@ const Council = () => {
         setLoadingStates((prev) => ({ ...prev, meetings: true }));
         setMeetings(result);
       })
-      .catch((err) =>
-        setErrors((prev) => ({ ...prev, meetings: err.toString() }))
-      );
+      .catch((err) => setErrors((prev) => ({ ...prev, meetings: err })));
   }, []);
 
   return (

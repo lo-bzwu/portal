@@ -25,7 +25,7 @@ const Topics = () => {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null);
   const [loadingComplete, setLoadingComplete] = useState(false);
-  const [error, setError] = useState<null | string>(null);
+  const [error, setError] = useState<null | Error>(null);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);

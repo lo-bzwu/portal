@@ -16,7 +16,7 @@ function Panel({
 }: {
   title: string;
   loading?: boolean;
-  error?: string | null;
+  error?: string | null | Error;
   actionLabel?: string;
   color: "positive" | "negative";
   onPopupOpen?: () => void;
@@ -93,7 +93,11 @@ function Panel({
         {error ? (
           <div className="flex flex-col gap-2 justify-center p-4 w-full rounded-xl bg-brand-negative-shade text-brand-negative">
             <img className="h-8" src={Warning} alt="warning sign" />
-            <p className="w-full text-left whitespace-pre-wrap">{error}</p>
+            <p className="w-full text-left whitespace-pre-wrap">
+              {typeof error === "string"
+                ? error
+                : error.name + "\n" + error.message + "\n" + error.stack}
+            </p>
           </div>
         ) : loading ? (
           <div className="flex flex-col gap-4 justify-center items-center p-16 w-full">

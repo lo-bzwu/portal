@@ -15,7 +15,7 @@ interface Post {
 
 const News = ({ navigate }: { navigate: NavigateFunc }) => {
   const [post, setPost] = useState<null | Post>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const id = window.location.pathname.split("/news/")[1];
