@@ -6,14 +6,14 @@ import { pb } from "../pb";
 const Contribute = ({ user }: { user: UserType }) => {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState<null | string>(null);
-  const [loading, setLoading] = useState(false);
+  const [isLoadingComplete, setLoadingComplete] = useState(true);
 
   return (
     <main className="flex justify-center mt-4 w-full h-full">
       <Panel
         title="Beitragen"
         color="positive"
-        loading={!loading}
+        loading={!isLoadingComplete}
         className="w-full max-w-screen-sm"
       >
         {submitted ? (
@@ -38,7 +38,7 @@ const Contribute = ({ user }: { user: UserType }) => {
             className="flex flex-col gap-4 mt-4 w-full"
             onSubmit={(event) => {
               event.preventDefault();
-              setLoading(true);
+              setLoadingComplete(false);
               pb.collection("submissions")
                 .create({
                   content: message,
@@ -51,7 +51,7 @@ const Contribute = ({ user }: { user: UserType }) => {
                   alert("Fehler:" + err);
                 })
                 .finally(() => {
-                  setLoading(false);
+                  setLoadingComplete(true);
                 });
             }}
           >
