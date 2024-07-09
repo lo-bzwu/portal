@@ -30,18 +30,22 @@ interface Link {
 
 function Links({
   classes,
+  userId,
   isTeacher,
 }: {
   classes: string[];
+  userId: string;
   isTeacher: boolean;
 }) {
   const [data, setData] = useState<Link[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<null | string>(null);
+  const [newLinkSubmitted, setNewLinkSubmitted] = useState(false);
 
   useEffect(() => {
     pb.collection("links")
       .getList<Link>(1, 20, {
+        requestKey: null,
         fields: "id,label,url,collectionName,preview,color",
         sort: "+order",
         filter: isTeacher
@@ -63,6 +67,58 @@ function Links({
     <Panel
       title="Weitere Links"
       color="negative"
+      actionLabel="+"
+      actionLabelClassName="int-btn--red"
+      popup={
+        newLinkSubmitted ? (
+          <div className="flex flex-col gap-2 p-2 min-w-64">
+            <p>Der Link wurde erfolgreich eingereicht.</p>
+            <button
+              className="p-1.5 rounded-lg border-2 bg-brand-theme-shade border-brand-theme text-brand-theme"
+              onClick={() => setNewLinkSubmitted(false)}
+            >
+              Weiteren Link einreichen
+            </button>
+          </div>
+        ) : (
+          <form
+            className="flex flex-col gap-2 p-2 min-w-32"
+            onSubmit={(event) => {
+              event.preventDefault();
+              const formData = new FormData(event.target as HTMLFormElement);
+              pb.collection("url_submissions")
+                .create({
+                  user: userId,
+                  description: formData.get("description"),
+                  url: formData.get("url"),
+                })
+                .then(() => {
+                  setNewLinkSubmitted(true);
+                });
+            }}
+          >
+            <p className="font-bold">Weiteren Link vorschlagen:</p>
+            <input
+              type="text"
+              className="input"
+              placeholder="Beschreibung"
+              name="description"
+            />
+            <input
+              name="url"
+              type="url"
+              className="input"
+              placeholder="Link (z.B. https://bzwu.ch)"
+            />
+            <button
+              className="p-1.5 rounded-lg border-2 bg-brand-theme-shade border-brand-theme text-brand-theme"
+              type="submit"
+            >
+              Vorschlagen
+            </button>
+          </form>
+        )
+      }
       loading={!isLoaded}
       error={error}
     >

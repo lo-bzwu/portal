@@ -29,6 +29,7 @@ const Home = ({
         onTopicClicked={(id) => navigate("topics", { topic: id })}
       />
       <Links
+        userId={user.id}
         classes={user.userSelectedClasses ?? []}
         isTeacher={user.isLocalTenant && !user.isLocalStudent}
       />
