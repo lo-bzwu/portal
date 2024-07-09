@@ -6,6 +6,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     // console.log(e.record) // could be null
     // console.log(e.isNewRecord)
 
+    console.log(e.record, e.isNewRecord)
     if (e.record?.introComplete) return;
 
     const institutionName = "BZWU";
