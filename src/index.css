@@ -47,10 +47,14 @@ button.btn {
 }
 
 
-ul {
-  @apply list-disc;
+.embedded-content ul {
+  @apply px-8 list-disc;
 }
 
-ol {
-  @apply list-decimal;
+.embedded-content ol {
+  @apply px-8 list-decimal;
+}
+
+.embedded-content {
+  @apply leading-3;
 }
