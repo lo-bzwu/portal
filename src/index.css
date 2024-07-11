@@ -46,3 +46,11 @@ button.btn {
   color: var(--brand-theme);
 }
 
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
+}
