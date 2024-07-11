@@ -93,7 +93,7 @@ const Topics = () => {
                       className="relative p-4 rounded-lg bg-secondary"
                     >
                       <div
-                        className="w-full whitespace-pre-wrap embedded-content"
+                        className="w-full embedded-content"
                         dangerouslySetInnerHTML={{
                           __html: DOMPurify.sanitize(feed.content),
                         }}

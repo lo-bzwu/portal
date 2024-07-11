@@ -56,5 +56,5 @@ button.btn {
 }
 
 .embedded-content {
-  @apply leading-3;
+  @apply flex flex-col gap-2;
 }
