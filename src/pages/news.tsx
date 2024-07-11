@@ -49,7 +49,7 @@ const News = ({ navigate }: { navigate: NavigateFunc }) => {
         >
           {post && (
             <div
-              className="mt-2 w-full whitespace-pre-wrap embedded-content"
+              className="mt-2 w-full embedded-content"
               dangerouslySetInnerHTML={{
                 // __html: DOMPurify.sanitize(post?.content, {}) post?.content,
                 __html: post?.content,
