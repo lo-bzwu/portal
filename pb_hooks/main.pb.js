@@ -44,10 +44,11 @@ onRecordAfterAuthWithOAuth2Request((e) => {
 
 })
 
-onRecordBeforeCreateRequest(() => {
+onRecordBeforeCreateRequest((e) => {
     const pushover_user = process.env.PUSHOVER_USER
     const pushover_token = process.env.PUSHOVER_TOKEN;
     if (!pushover_user || !pushover_token) return;
+    console.log(e)
 
     $http.send({
         url: "https://api.pushover.net/1/messages.json",
@@ -56,4 +57,4 @@ onRecordBeforeCreateRequest(() => {
         headers: { "content-type": "application/json" },
         timeout: 120, // in seconds
     })
-}, "submissions")
+}, "submissions", "url_submissions")
