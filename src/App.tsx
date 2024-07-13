@@ -188,14 +188,14 @@ function App() {
     setTimeout(() => logPageVisit({ page, props: params, suffix }));
   };
 
-  const useNavigation = (
-    page: keyof typeof pages,
-    params: Record<string, string>,
-    suffix?: string
-  ) => ({
-    url: _generatePageURL(page, params, suffix),
-    do: () => goToPage(page, params, suffix),
-  });
+  // const useNavigation = (
+  //   page: keyof typeof pages,
+  //   params: Record<string, string>,
+  //   suffix?: string
+  // ) => ({
+  //   url: _generatePageURL(page, params, suffix),
+  //   do: () => goToPage(page, params, suffix),
+  // });
 
   const buttons = (
     <>
