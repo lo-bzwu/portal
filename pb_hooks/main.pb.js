@@ -48,7 +48,7 @@ onRecordBeforeCreateRequest((e) => {
     const pushover_user = process.env.PUSHOVER_USER
     const pushover_token = process.env.PUSHOVER_TOKEN;
     if (!pushover_user || !pushover_token) return;
-    console.log(e)
+    console.log(JSON.stringify(e))
 
     $http.send({
         url: "https://api.pushover.net/1/messages.json",
