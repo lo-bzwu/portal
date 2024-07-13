@@ -47,7 +47,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
 onRecordBeforeCreateRequest(() => {
     const pushover_user = process.env.PUSHOVER_USER
     const pushover_token = process.env.PUSHOVER_TOKEN;
-    if (!pushover_url || !pushover_token) return;
+    if (!pushover_user || !pushover_token) return;
     fetch("https://api.pushover.net/1/messages.json", {
         method: "POST",
         headers: { 'content-type': 'application/json' },

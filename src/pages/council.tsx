@@ -26,7 +26,7 @@ interface Commission {
   council_leader: string;
   contribute_blog: string;
   expand: {
-    "commission_members(commission)": {
+    commission_members_via_commission: {
       id: string;
       image: string;
       name: string;
@@ -78,7 +78,7 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
     pb.collection("commissions")
       .getFullList<Commission>({
         fields: "id,name,description,leader,council_leader,expand",
-        expand: "commission_members(commission),contribute_post",
+        expand: "commission_members_via_commission,contribute_post",
       })
       .then((result) => {
         setLoadingStates((prev) => ({ ...prev, commissions: true }));
@@ -246,7 +246,7 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
         >
           {commissions.map((commission) => {
             const members = commission.expand
-              ? commission.expand["commission_members(commission)"]
+              ? commission.expand.commission_members_via_commission
               : [];
             const leader = members.find(
               (member) => member.id === commission.leader

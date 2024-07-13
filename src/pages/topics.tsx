@@ -12,7 +12,7 @@ interface Topic {
   locations: string[];
   collectionName: string;
   expand: {
-    "topic_feed(topic)": {
+    topic_feed_via_topic: {
       content: string;
       updated: string;
       collectionName: string;
@@ -35,7 +35,7 @@ const Topics = () => {
     pb.collection("topics")
       .getList<Topic>(1, 20, {
         fields: "id,title,locations,collectionName,status,expand",
-        expand: "topic_feed(topic)",
+        expand: "topic_feed_via_topic",
       })
       .then((topics) => {
         setTopics(topics.items);
@@ -87,7 +87,7 @@ const Topics = () => {
               </div>
               <div className="flex flex-col gap-4 mt-4">
                 {selectedTopic.expand &&
-                  selectedTopic.expand["topic_feed(topic)"].map((feed) => (
+                  selectedTopic.expand.topic_feed_via_topic.map((feed) => (
                     <div
                       key={feed.id}
                       className="relative p-4 rounded-lg bg-secondary"
