@@ -43,3 +43,14 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     return save()
 
 })
+
+onRecordBeforeCreateRequest(() => {
+    const pushover_user = process.env.PUSHOVER_USER
+    const pushover_token = process.env.PUSHOVER_TOKEN;
+    if (!pushover_url || !pushover_token) return;
+    fetch("https://api.pushover.net/1/messages.json", {
+        method: "POST",
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ token: pushover_token, user: pushover_user, message: "Neue Einsendung eingereicht." })
+    })
+}, "submissions")

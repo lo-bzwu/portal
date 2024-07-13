@@ -11,7 +11,6 @@ interface Topic {
 interface ContributionOption {
   id: string;
   text: string;
-  slug: string;
   post: string;
 }
 

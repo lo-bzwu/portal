@@ -47,8 +47,9 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
           className="flex absolute flex-wrap gap-2 p-2 w-full bg-white rounded-lg opacity-0 pointer-events-none data-[visible=true]:opacity-100 data-[visible=true]:pointer-events-auto drop-shadow-lg"
         >
           {filteredClasses.length ? (
-            filteredClasses.map((availableClass) => (
+            filteredClasses.map((availableClass, i) => (
               <button
+                key={i}
                 onClick={() => {
                   pb.collection("users")
                     .update<UserType>(

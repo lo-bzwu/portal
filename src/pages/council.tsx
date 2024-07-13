@@ -5,6 +5,8 @@ import EmailPositive from "../assets/email-positive.svg";
 import EmailNegative from "../assets/email-negative.svg";
 import { getRelativeTime } from "../utils/time";
 import logPageVisit from "../utils/reportPageVisit";
+import { NavigateFunc } from "../App";
+import { formatBlogPostUrl } from "../utils/formatters";
 
 interface CouncilMember {
   id: string;
@@ -22,6 +24,7 @@ interface Commission {
   description: string;
   leader: string;
   council_leader: string;
+  contribute_blog: string;
   expand: {
     "commission_members(commission)": {
       id: string;
@@ -30,6 +33,10 @@ interface Commission {
       email: string;
       role: string;
     }[];
+    contribute_post?: {
+      id: string;
+      title: string;
+    };
   };
 }
 interface Meeting {
@@ -42,7 +49,7 @@ interface Meeting {
   ended: boolean;
 }
 
-const Council = () => {
+const Council = ({ navigate }: { navigate: NavigateFunc }) => {
   const [councilMembers, setCouncilMembers] = useState<CouncilMember[]>([]);
   const [commissions, setCommissions] = useState<Commission[]>([]);
   const [meetings, setMeetings] = useState<Meeting[]>([]);
@@ -71,7 +78,7 @@ const Council = () => {
     pb.collection("commissions")
       .getFullList<Commission>({
         fields: "id,name,description,leader,council_leader,expand",
-        expand: "commission_members(commission)",
+        expand: "commission_members(commission),contribute_post",
       })
       .then((result) => {
         setLoadingStates((prev) => ({ ...prev, commissions: true }));
@@ -116,7 +123,7 @@ const Council = () => {
                     })}
                     alt={"Bild von " + member.name}
                   />
-                  <div className="md:leading-4">
+                  <div className="md:leading-5">
                     <p className="md:text-xl">{member.name}</p>
                     <p className="opacity-50">{member.role}</p>
                   </div>
@@ -269,6 +276,24 @@ const Council = () => {
                         })}
                       />
                     ))}
+                    {commission.expand.contribute_post && (
+                      <button
+                        onClick={() =>
+                          navigate(
+                            "news",
+                            undefined,
+                            formatBlogPostUrl({
+                              id: commission.expand.contribute_post!.id,
+                              slug:
+                                commission.expand.contribute_post?.title || "",
+                            })
+                          )
+                        }
+                        className="flex justify-center items-center -ml-3 w-10 h-10 font-bold rounded-full border-2 transition-transform cursor-pointer border-brand-theme bg-brand-theme-shade hover:z-10 hover:scale-125 text-brand-theme"
+                      >
+                        +
+                      </button>
+                    )}
                   </div>
 
                   <a

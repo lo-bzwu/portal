@@ -36,7 +36,7 @@ const News = ({ navigate }: { navigate: NavigateFunc }) => {
       <div className="flex flex-col gap-4 w-full max-w-screen-md">
         <button
           onClick={() => navigate("home")}
-          className="int-btn--blue w-fit"
+          className="w-full int-btn--blue md:w-fit"
         >
           Zurück
         </button>

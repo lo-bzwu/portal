@@ -58,6 +58,12 @@ export type NavigateFunc = (
   suffix?: string
 ) => void;
 
+export type UseNagivationFunc = (
+  page: keyof typeof pages,
+  params?: Record<string, string>,
+  suffix?: string
+) => { url: string; do: () => void };
+
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
@@ -155,21 +161,41 @@ function App() {
     );
   }
 
+  const _generatePageURL = (
+    page: keyof typeof pages,
+    params: Record<string, string> = {},
+    suffix = ""
+  ): { title: string; url: string } => {
+    const paramString = new URLSearchParams(params).toString();
+    return {
+      title: pages[page].title,
+      url:
+        pages[page].url +
+        (paramString.length ? "?" + paramString : "") +
+        suffix,
+    };
+  };
+
   const goToPage = (
     page: keyof typeof pages,
     params: Record<string, string> = {},
     suffix = ""
   ) => {
-    const paramString = new URLSearchParams(params).toString();
-    window.history.pushState(
-      page,
-      pages[page].title,
-      pages[page].url + (paramString.length ? "?" + paramString : "") + suffix
-    );
+    const { title, url } = _generatePageURL(page, params, suffix);
+    window.history.pushState(page, title, url);
     document.title = pages[page].title;
     setPage(page);
     setTimeout(() => logPageVisit({ page, props: params, suffix }));
   };
+
+  const useNavigation = (
+    page: keyof typeof pages,
+    params: Record<string, string>,
+    suffix?: string
+  ) => ({
+    url: _generatePageURL(page, params, suffix),
+    do: () => goToPage(page, params, suffix),
+  });
 
   const buttons = (
     <>
@@ -249,7 +275,7 @@ function App() {
       </nav>
       {page === "home" && <Home navigate={goToPage} user={user} />}
       {page === "topics" && <Topics />}
-      {page === "council" && <Council />}
+      {page === "council" && <Council navigate={goToPage} />}
       {page === "contribute" && <Contribute user={user} />}
       {page === "news" && <News navigate={goToPage} />}
     </div>

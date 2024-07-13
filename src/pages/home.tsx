@@ -4,6 +4,7 @@ import Menus from "../parts/menus";
 import Timetable from "../parts/timetable";
 import Topics from "../parts/topics";
 import type { UserType, NavigateFunc } from "../App";
+import { formatBlogPostUrl } from "../utils/formatters";
 
 const Home = ({
   user,
@@ -18,13 +19,17 @@ const Home = ({
     <Blogs
       userClasses={user.userSelectedClasses}
       openPost={(id, slug) =>
-        navigate("news", undefined, "/" + id + "-" + slug)
+        navigate("news", undefined, formatBlogPostUrl({ id, slug }))
       }
     />
     <div className="flex overflow-hidden flex-col gap-4 h-full">
       <Topics
         onContributionOptionClicked={(option) =>
-          navigate("news", undefined, "/" + option.post + "-" + option.slug)
+          navigate(
+            "news",
+            undefined,
+            formatBlogPostUrl({ id: option.post, slug: option.text })
+          )
         }
         onTopicClicked={(id) => navigate("topics", { topic: id })}
       />
