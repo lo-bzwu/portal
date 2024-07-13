@@ -48,12 +48,11 @@ onRecordBeforeCreateRequest((e) => {
     const pushover_user = process.env.PUSHOVER_USER
     const pushover_token = process.env.PUSHOVER_TOKEN;
     if (!pushover_user || !pushover_token) return;
-    console.log(JSON.stringify(e))
 
     $http.send({
         url: "https://api.pushover.net/1/messages.json",
         method: "POST",
-        body: JSON.stringify({ token: pushover_token, user: pushover_user, message: "Eine Nachricht wurde eingereicht." }),
+        body: JSON.stringify({ token: pushover_token, user: pushover_user, message: "Ein Eintrag in der Kollektion " + e.collection.name + " wurde eingereicht." }),
         headers: { "content-type": "application/json" },
         timeout: 120, // in seconds
     })
