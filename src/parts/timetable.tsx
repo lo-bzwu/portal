@@ -103,7 +103,7 @@ function Timetable({ user }: { user: UserType }) {
       setDay((selectedDay) => {
         selectedDay.setHours(now.getHours());
         selectedDay.setMinutes(now.getMinutes());
-        return window.structuredClone(now);
+        return window.structuredClone(selectedDay);
       });
     }, 1000 * 60);
 
