@@ -11,14 +11,16 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     const isLocalTenant = tenantIndex !== -1;
     const givenName = e.oAuth2User.rawUser.givenName;
     const surname = e.oAuth2User.rawUser.surname
-    const hasUserSelectedClasses = typeof e.record?.get("userSelectedClasses") === "object"
+    const hasUserSelectedClasses = Array.isArray(e.record?.get("userSelectedClasses"))
+
     e.record.set('isLocalTenant', isLocalTenant);
     e.record.set('firstName', givenName);
     e.record.set('lastName', surname);
     if (!hasUserSelectedClasses) e.record.set('userSelectedClasses', []);
 
     e.record.set('classes', []);
-    e.record.setUsername(surname.slice(0, 2).toUpperCase() + givenName.slice(0, 2).toUpperCase() + "-" + e.oAuth2User.id.slice(0, 4));
+    const userNameSuffix = '-' + surname.slice(0, 2).toUpperCase() + givenName.slice(0, 2).toUpperCase() + "-" + e.oAuth2User.id.slice(0, 4)
+    e.record.setUsername((isLocalTenant ? 'teach' : 'ext') + userNameSuffix);
 
     const save = () => $app.dao().saveRecord(e.record);
 
@@ -36,6 +38,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
         return save()
     }
 
+    e.record.setUsername('stud' + userNameSuffix);
     e.record.set('isLocalStudent', true);
     e.record.set('classes', classes);
     if (!hasUserSelectedClasses) e.record.set('userSelectedClasses', classes);

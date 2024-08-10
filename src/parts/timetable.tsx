@@ -26,6 +26,7 @@ function makeDateString(date: Date) {
 function Timetable({ user }: { user: UserType }) {
   const [selectedDay, setDay] = useState(new Date());
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const userClasses = useMemo(() => user.userSelectedClasses ?? [], [user]);
 
@@ -87,6 +88,7 @@ function Timetable({ user }: { user: UserType }) {
       )
         .then((r) => r.json())
         .then((data) => {
+          setLoading(false);
           setData({ ...data, result: data.result ?? [] });
           setError(null);
         })
@@ -154,7 +156,7 @@ function Timetable({ user }: { user: UserType }) {
 
   return (
     <Panel
-      loading={data.result.length === 0}
+      loading={loading}
       title="Stundenplan"
       color="positive"
       error={error}
@@ -200,8 +202,16 @@ function Timetable({ user }: { user: UserType }) {
         {selectedDayOccurrences.length === 0 ? (
           <div className="p-4 rounded-lg text-brand-theme bg-brand-theme-shade">
             <p>
-              Am ausgewählten Tag {isTeacher ? "geben" : "haben"} Sie keine
-              Lektionen.
+              {data.result.length === 0
+                ? `Im Stundenplan wurden keine Lektionen gefunden. ${
+                    isTeacher
+                      ? `Wenn ihr Kürzel nicht "${user.teacherCode}" ist, bitten wenden Sie sich an den Support des LO-Portals.`
+                      : `Bitte überprüfe die ausgewählten Klassen unter "Klassen verwalten".`
+                  }`
+                : `Am ausgewählten Tag ${
+                    isTeacher ? "geben" : "haben"
+                  } Sie keine
+              Lektionen.`}
             </p>
             {nextLesson !== null && (
               <button

@@ -23,10 +23,11 @@ function News(props: {
       .getList<NewsItem>(1, 20, {
         fields: "title,subtitle,locations,image,id,collectionName",
         filter:
-          'published = true && classes = "" || ' +
-          (props.userClasses ?? [])
-            .map((c) => 'classes ~ "' + c.replace('"', "") + '"')
-            .join(" || "),
+          'published = true && (classes = ""' +
+          (props.userClasses ?? []).map(
+            (userClass) => `|| classes ~ "${userClass.replace('"', "")}"`
+          ) +
+          ")",
       })
       .then((posts) => {
         setData(posts.items);
