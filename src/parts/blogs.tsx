@@ -25,7 +25,7 @@ function News(props: {
         filter:
           'published = true && (classes = ""' +
           (props.userClasses ?? [])
-            .map((userClass) => `|| classes ~ "${userClass.replace('"', "")}"`)
+            .map((userClass) => ` || classes ~ "${userClass.replace('"', "")}"`)
             .join("") +
           ")",
       })

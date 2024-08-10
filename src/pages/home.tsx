@@ -24,6 +24,8 @@ const Home = ({
     />
     <div className="flex overflow-hidden flex-col gap-4 h-full">
       <Topics
+        isStudent={user.isLocalTenant && user.isLocalStudent}
+        navigateToContribute={() => navigate("contribute", { from: "topics" })}
         onContributionOptionClicked={(option) =>
           navigate(
             "news",

@@ -176,7 +176,7 @@ function App() {
     };
   };
 
-  const goToPage = (
+  const goToPage: NavigateFunc = (
     page: keyof typeof pages,
     params: Record<string, string> = {},
     suffix = ""

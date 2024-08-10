@@ -17,8 +17,10 @@ interface ContributionOption {
 function Topics(props: {
   onTopicClicked: (topic_id: string) => void;
   onContributionOptionClicked: (option: ContributionOption) => void;
+  isStudent: boolean;
+  navigateToContribute: () => void;
 }) {
-  const [data, setData] = useState<Topic[]>([]);
+  const [data, setData] = useState<null | Topic[]>(null);
   // const [error, setError] = useState<null | string>(null);
   const [contributionOptions, setContributionOptions] = useState<
     ContributionOption[]
@@ -34,14 +36,15 @@ function Topics(props: {
         setData(topics.items);
       });
 
-    pb.collection("contribution_options")
-      .getList<ContributionOption>(1, 10)
-      .then((newContributionOptions) => {
-        setContributionOptions(newContributionOptions.items);
-      });
-  }, []);
+    if (props.isStudent)
+      pb.collection("contribution_options")
+        .getList<ContributionOption>(1, 10)
+        .then((newContributionOptions) => {
+          setContributionOptions(newContributionOptions.items);
+        });
+  }, [props.isStudent]);
 
-  if (!data.length) {
+  if (!(data ?? []).length && props.isStudent) {
     return (
       <Panel title="Mitmachen bei der LO" color="negative">
         <div className="flex flex-col gap-4 mt-4 h-full">
@@ -66,9 +69,19 @@ function Topics(props: {
   }
 
   return (
-    <Panel title="Aktuelle Themen" color="negative" loading={data.length === 0}>
+    <Panel
+      title="Aktuelle Themen"
+      color="negative"
+      loading={data === null}
+      actionLabel="+"
+      actionLabelClassName="int-btn--red"
+      onPopupOpen={props.navigateToContribute}
+    >
       <div className="flex flex-col gap-4 mt-4">
-        {data.map((topic) => (
+        {data && data.length === 0 && (
+          <p>Aktuell gibt es noch keine relevanten Themen.</p>
+        )}
+        {(data ?? []).map((topic) => (
           <button
             onClick={() => props.onTopicClicked(topic.id)}
             key={topic.id}

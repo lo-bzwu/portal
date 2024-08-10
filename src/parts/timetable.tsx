@@ -67,7 +67,7 @@ function Timetable({ user }: { user: UserType }) {
   useEffect(() => {
     if (!isTeacher && !userClasses.length) {
       setError(
-        "Da Sie keine Lehrperson sind und keine Klassen ausgewählt haben, können keine Stundenplandaten angezeigt werden."
+        `Da du keine Klassen ausgewählt hast, können keine Stundenplandaten angezeigt werden.\nKlicke auf "Klassen verwalten", um Lektionen zu sehen.`
       );
       return;
     }
