@@ -11,7 +11,11 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     const isLocalTenant = tenantIndex !== -1;
     const givenName = e.oAuth2User.rawUser.givenName;
     const surname = e.oAuth2User.rawUser.surname
-    const previousUserSelectedClasses = e.record.get("userSelectedClasses");
+
+
+    const previousUserSelectedClasses = new DynamicModel([])
+    e.record.unmarshalJSONField("userSelectedClasses", previousUserSelectedClasses)
+
     const hasUserSelectedClasses = Array.isArray(previousUserSelectedClasses) && previousUserSelectedClasses.length > 0
     console.log(hasUserSelectedClasses, JSON.stringify(e.record.get("userSelectedClasses")))
 

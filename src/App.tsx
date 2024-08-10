@@ -97,6 +97,10 @@ function App() {
 
     function startWatching(id: string) {
       pb.collection("users").subscribe<UserType>(id, (data) => {
+        if (data.action === "delete") {
+          setUser(null);
+          return;
+        }
         if (data.action !== "update") return;
         pb.collection("users").authRefresh();
 
