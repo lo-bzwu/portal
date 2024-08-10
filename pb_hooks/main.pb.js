@@ -59,4 +59,4 @@ onRecordBeforeCreateRequest((e) => {
         headers: { "content-type": "application/json" },
         timeout: 120, // in seconds
     })
-}, "submissions", "url_submissions")
+}, "submissions", "url_submissions", "crash_logs")

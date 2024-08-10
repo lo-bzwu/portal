@@ -66,9 +66,12 @@ class ErrorBoundary extends Component<
               </div>
             </div>
             <div className="flex gap-4 p-4 bg-brand-theme-shade text-brand-theme">
-              <img src={Warning} alt="" className="w-8" />
+              <img src={Warning} alt="warning" className="w-8" />
               Es ist leider ein schwerwiegender Fehler aufgetreten. Dieser
-              Fehler wurde aufgezeichnt wird vom LO-Team analysiert.
+              Fehler wurde aufgezeichnt das LO-Team wurde benachrichtigt.
+              <br />
+              <br />
+              Wir entschuldigen uns für die Unannehmlichkeiten.
             </div>
           </div>
         </main>

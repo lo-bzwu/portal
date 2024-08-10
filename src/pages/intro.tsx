@@ -46,7 +46,7 @@ const Intro = (props: {
         {isLoading ? (
           <>
             <img className="h-24 animate-spin" src={Logo} alt="Logo der LO" />
-            <p className="w-full text-center">Sie werden eingeloggt...</p>
+            <p className="w-full text-center">Login wird durchgeführt...</p>
           </>
         ) : (
           <>

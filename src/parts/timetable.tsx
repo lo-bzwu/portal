@@ -209,9 +209,8 @@ function Timetable({ user }: { user: UserType }) {
                       : `Bitte überprüfe die ausgewählten Klassen unter "Klassen verwalten".`
                   }`
                 : `Am ausgewählten Tag ${
-                    isTeacher ? "geben" : "haben"
-                  } Sie keine
-              Lektionen.`}
+                    isTeacher ? "geben Sie" : "hast du"
+                  } keine Lektionen.`}
             </p>
             {nextLesson !== null && (
               <button

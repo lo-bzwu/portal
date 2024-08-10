@@ -31,8 +31,8 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
   return (
     <div className="flex flex-col gap-2 min-w-48">
       <p className="text-sm opacity-50">
-        Hier können Sie die sichtbaren Klassen einrichten. Die oberste Klasse
-        hat oberste Priorität.
+        Hier kannst du die sichtbaren Klassen einrichten. Die oberste Klasse hat
+        oberste Priorität.
       </p>
       <div className="relative">
         <input
