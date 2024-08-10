@@ -72,7 +72,7 @@ function Timetable({ user }: { user: UserType }) {
       return;
     }
 
-    const refresh = () => {
+    const refresh = (initial = false) => {
       fetch(
         pb.buildUrl("/api/proxy/lessons") +
           "?" +
@@ -92,7 +92,7 @@ function Timetable({ user }: { user: UserType }) {
           setData({ ...data, result: data.result ?? [] });
           setError(null);
         })
-        .catch(setError);
+        .catch(initial ? setError : undefined);
     };
 
     refresh();
