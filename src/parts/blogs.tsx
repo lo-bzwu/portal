@@ -24,9 +24,9 @@ function News(props: {
         fields: "title,subtitle,locations,image,id,collectionName",
         filter:
           'published = true && (classes = ""' +
-          (props.userClasses ?? []).map(
-            (userClass) => `|| classes ~ "${userClass.replace('"', "")}"`
-          ) +
+          (props.userClasses ?? [])
+            .map((userClass) => `|| classes ~ "${userClass.replace('"', "")}"`)
+            .join("") +
           ")",
       })
       .then((posts) => {
