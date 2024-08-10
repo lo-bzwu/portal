@@ -12,6 +12,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     const givenName = e.oAuth2User.rawUser.givenName;
     const surname = e.oAuth2User.rawUser.surname
     const hasUserSelectedClasses = Array.isArray(e.record?.get("userSelectedClasses"))
+    console.log(hasUserSelectedClasses, e.record.get("userSelectedClasses"))
 
     e.record.set('isLocalTenant', isLocalTenant);
     e.record.set('firstName', givenName);
