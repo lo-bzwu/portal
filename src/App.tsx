@@ -124,12 +124,18 @@ function App() {
         .authRefresh<UserType>()
         .then((updatedUser) => {
           const user = updatedUser.record;
-          if (!user) return pb.authStore.clear();
+          if (!user) {
+            setUser(null);
+            pb.authStore.clear();
+            return;
+          }
           setUser(user);
         })
         .catch((error) => {
           console.error("auth refresh failed", error);
+          setUser(null);
           pb.authStore.clear();
+          return;
         });
       // pb.collection("users")
       //   .authRefresh()
