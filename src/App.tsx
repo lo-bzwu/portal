@@ -120,7 +120,17 @@ function App() {
     } else {
       startWatching(pb.authStore.model?.id);
       setUser(pb.authStore.model as UserType);
-
+      pb.collection("users")
+        .authRefresh<UserType>()
+        .then((updatedUser) => {
+          const user = updatedUser.record;
+          if (!user) return pb.authStore.clear();
+          setUser(user);
+        })
+        .catch((error) => {
+          console.error("auth refresh failed", error);
+          pb.authStore.clear();
+        });
       // pb.collection("users")
       //   .authRefresh()
       //   .catch(() => {
