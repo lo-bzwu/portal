@@ -205,7 +205,7 @@ function Timetable({ user }: { user: UserType }) {
               {data.result.length === 0
                 ? `Im Stundenplan wurden keine Lektionen gefunden. ${
                     isTeacher
-                      ? `Wenn ihr Kürzel nicht "${user.teacherCode}" ist, bitten wenden Sie sich an den Support des LO-Portals.`
+                      ? `Falls Ihr Kürzel nicht "${user.teacherCode}" ist, bitten wenden Sie sich an den Support des LO-Portals.`
                       : `Bitte überprüfe die ausgewählten Klassen unter "Klassen verwalten".`
                   }`
                 : `Am ausgewählten Tag ${
