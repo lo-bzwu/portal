@@ -9,7 +9,7 @@ const Setup = ({
   handleSave,
 }: {
   user: UserType;
-  handleSave: () => void;
+  handleSave: (teacherCode: string, locations: string[]) => void;
 }) => {
   const completeSetup = () => {
     pb.collection<UserType>("users")
@@ -18,7 +18,7 @@ const Setup = ({
         teacherCode: newShortCode,
         locations: selectedLocations,
       })
-      .then(() => handleSave());
+      .then(() => handleSave(newShortCode, selectedLocations));
   };
 
   const [selectedLocations, setSelectedLocations] = useState<

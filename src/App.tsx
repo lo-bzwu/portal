@@ -23,6 +23,7 @@ export interface UserType {
   updated: string;
   collectionId: string;
   teacherCode: string;
+  locations: string[];
   userSelectedClasses?: string[];
   username: string;
   verified: boolean;
@@ -120,6 +121,9 @@ function App() {
         .then((model) => {
           startWatching(model.record.collectionId);
           setUser(model.record);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     } else {
       startWatching(pb.authStore.model?.id);
@@ -171,10 +175,15 @@ function App() {
     return (
       <Setup
         user={user}
-        handleSave={() => {
+        handleSave={(newTeacherCode, locations) => {
           setUser((u) => {
             if (!u) return u;
-            return { ...u, introComplete: true };
+            return {
+              ...u,
+              introComplete: true,
+              teacherCode: newTeacherCode,
+              locations,
+            };
           });
         }}
       />

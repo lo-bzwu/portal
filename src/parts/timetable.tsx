@@ -28,7 +28,10 @@ function Timetable({ user }: { user: UserType }) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const userClasses = useMemo(() => user.userSelectedClasses ?? [], [user]);
+  const userClasses = useMemo(
+    () => user.userSelectedClasses ?? [],
+    [user.userSelectedClasses]
+  );
 
   const [data, setData] = useState<{
     teachers: Record<string, { first_name: string; last_name: string }>;
