@@ -14,6 +14,7 @@ routerAdd("GET", "/api/proxy/lessons", (c) => {
     const responseType = res.headers['content-type']
     for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
 
+    console.log('received', res.statusCode)
     if (res.statusCode === 302) return c.noContent(302)
 
     if (responseType === "application/json") return c.json(res.statusCode, res.json)
