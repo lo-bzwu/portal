@@ -14,6 +14,8 @@ routerAdd("GET", "/api/proxy/lessons", (c) => {
     const responseType = res.headers['content-type']
     for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
 
+    if (res.statusCode === 302) return c.string(302, "")
+
     if (responseType === "application/json") return c.json(res.statusCode, res.json)
     return c.string(res.statusCode, res.raw)
 })
@@ -32,6 +34,8 @@ routerAdd("GET", "/api/proxy/classes", (c) => {
     const responseType = res.headers['content-type']
     for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
 
+    if (res.statusCode === 302) return c.string(302, "")
+
     if (responseType === "application/json") return c.json(res.statusCode, res.json)
     return c.string(res.statusCode, res.raw)
 })
@@ -46,6 +50,7 @@ routerAdd("GET", "/api/proxy/menus/current.json", (c) => {
     })
 
     for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
+    if (res.statusCode === 302) return c.string(302, "")
 
     return c.json(res.statusCode, res.json)
 })
@@ -60,6 +65,7 @@ routerAdd("GET", "/api/proxy/menus/next.json", (c) => {
     })
 
     for (let [key, value] of Object.entries(res.headers)) c.response().header().set(key, value)
+    if (res.statusCode === 302) return c.string(302, "")
 
     return c.json(res.statusCode, res.json)
 })
