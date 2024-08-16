@@ -128,6 +128,9 @@ function App() {
     } else {
       startWatching(pb.authStore.model?.id);
       setUser(pb.authStore.model as UserType);
+
+      // skip auth refresh on dev
+      if (import.meta.env.DEV) return;
       pb.collection("users")
         .authRefresh<UserType>()
         .then((updatedUser) => {

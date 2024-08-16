@@ -14,6 +14,7 @@ interface CouncilMember {
   role: string;
   image: string;
   highlight: boolean;
+  description: string;
   email: string;
   collectionName: string;
 }
@@ -67,7 +68,7 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
   useEffect(() => {
     pb.collection("council_members")
       .getList<CouncilMember>(1, 20, {
-        fields: "id,collectionName,name,role,image,highlight,email",
+        fields: "id,collectionName,name,role,description,image,highlight,email",
       })
       .then((members) => {
         setCouncilMembers(members.items);
@@ -112,10 +113,10 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
             {councilMembers.map((member) => (
               <div
                 key={member.id}
-                className="p-2 pr-4 flex items-center gap-8 rounded-xl bg-secondary data-[highlight=true]:bg-brand-theme data-[highlight=true]:text-white flex-1"
+                className="p-2 md:p-4 w-full rounded-xl bg-secondary data-[highlight=true]:bg-brand-theme data-[highlight=true]:text-white flex-1"
                 data-highlight={member.highlight}
               >
-                <div className="flex flex-1 gap-4 items-center">
+                <div className="flex gap-4 justify-between items-center">
                   <img
                     className="object-cover w-12 rounded-xl md:w-16 aspect-square"
                     src={pb.getFileUrl(member, member.image, {
@@ -123,34 +124,35 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
                     })}
                     alt={"Bild von " + member.name}
                   />
-                  <div className="md:leading-5">
-                    <p className="md:text-xl">{member.name}</p>
-                    <p className="opacity-50">{member.role}</p>
+                  <div className="flex-1">
+                    <p className="text-xl">{member.name}</p>
+                    <p className="opacity-60">{member.role}</p>
                   </div>
+                  <a
+                    onClick={() =>
+                      logPageVisit({
+                        page: "council",
+                        external_url: member.email,
+                        props: {
+                          kind: "council_member",
+                          member_id: member.id,
+                        },
+                      })
+                    }
+                    href={
+                      "mailto:" +
+                      member.email +
+                      "?" +
+                      new URLSearchParams({
+                        subject: "Anfrage an Lernendenorganisation",
+                      }).toString()
+                    }
+                    className="flex w-12 h-12 int-btn--blue"
+                  >
+                    <img src={EmailPositive} alt="Email" />
+                  </a>
                 </div>
-                <a
-                  onClick={() =>
-                    logPageVisit({
-                      page: "council",
-                      external_url: member.email,
-                      props: {
-                        kind: "council_member",
-                        member_id: member.id,
-                      },
-                    })
-                  }
-                  href={
-                    "mailto:" +
-                    member.email +
-                    "?" +
-                    new URLSearchParams({
-                      subject: "Anfrage an Lernendenorganisation",
-                    }).toString()
-                  }
-                  className="flex w-12 h-12 int-btn--blue"
-                >
-                  <img src={EmailPositive} alt="Email" />
-                </a>
+                <p className="mt-2">{member.description}</p>
               </div>
             ))}
           </div>
