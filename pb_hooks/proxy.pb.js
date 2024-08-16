@@ -1,10 +1,13 @@
+/// <reference path="../pb_data/types.d.ts" />
 
 routerAdd("GET", "/api/proxy/lessons", (c) => {
 
     const res = $http.send({
         url: "http://davinci-cache:8000/lessons?classes=" + encodeURIComponent(c.queryParam("classes")) + "&teachers=" + encodeURIComponent(c.queryParam("teachers")),
         method: "GET",
-        headers: $apis.requestInfo(c).headers,
+        headers: {
+            'If-None-Match': c.request().header.get("If-None-Match"),
+        },
         timeout: 120,
     })
 
@@ -20,7 +23,9 @@ routerAdd("GET", "/api/proxy/classes", (c) => {
     const res = $http.send({
         url: "http://davinci-cache:8000/classes",
         method: "GET",
-        headers: $apis.requestInfo(c).headers,
+        headers: {
+            'If-None-Match': c.request().header.get("If-None-Match"),
+        },
         timeout: 120,
     })
 
