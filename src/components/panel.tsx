@@ -51,7 +51,8 @@ function Panel({
   return (
     <div
       className={
-        "overflow-y-auto px-5 py-6 bg-white md:h-full rounded-3xl " + className
+        "overflow-y-auto hide-scrollbar px-5 py-6 bg-white md:h-full rounded-3xl " +
+        className
       }
       style={
         {

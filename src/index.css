@@ -58,3 +58,12 @@ button.btn {
 .embedded-content {
   @apply flex flex-col gap-6;
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
