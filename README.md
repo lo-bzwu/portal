@@ -24,15 +24,15 @@ PocketBase Collections:
 ```json
 [
     {
-        "id": "uvz5gzs6alsaivc",
-        "name": "links",
-        "type": "base",
+        "id": "_pb_users_auth_",
+        "name": "users",
+        "type": "auth",
         "system": false,
         "schema": [
             {
                 "system": false,
-                "id": "fezykdxr",
-                "name": "label",
+                "id": "users_name",
+                "name": "firstName",
                 "type": "text",
                 "required": false,
                 "presentable": false,
@@ -45,51 +45,76 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "qoyvifz5",
-                "name": "url",
-                "type": "url",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "exceptDomains": null,
-                    "onlyDomains": null
-                }
-            },
-            {
-                "system": false,
-                "id": "h1k10ydy",
-                "name": "preview",
-                "type": "file",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "mimeTypes": [],
-                    "thumbs": [],
-                    "maxSelect": 1,
-                    "maxSize": 5242880,
-                    "protected": false
-                }
-            },
-            {
-                "system": false,
-                "id": "riuyqair",
-                "name": "color",
+                "id": "sfdbba3j",
+                "name": "lastName",
                 "type": "text",
                 "required": false,
                 "presentable": false,
                 "unique": false,
                 "options": {
-                    "min": 7,
-                    "max": 7,
-                    "pattern": "#[\\dA-Fa-f]{5}"
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
                 }
             },
             {
                 "system": false,
-                "id": "c1q3qvdr",
+                "id": "v5jbjpgz",
+                "name": "userSelectedClasses",
+                "type": "json",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSize": 2000000
+                }
+            },
+            {
+                "system": false,
+                "id": "tnublb2m",
                 "name": "classes",
+                "type": "json",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSize": 2000000
+                }
+            },
+            {
+                "system": false,
+                "id": "edjrws96",
+                "name": "isLocalTenant",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "system": false,
+                "id": "qbsyjzbm",
+                "name": "isLocalStudent",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "system": false,
+                "id": "gmlxo9r0",
+                "name": "introComplete",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "system": false,
+                "id": "ddh5vc2c",
+                "name": "teacherCode",
                 "type": "text",
                 "required": false,
                 "presentable": false,
@@ -102,93 +127,7 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "siapriw0",
-                "name": "order",
-                "type": "number",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "noDecimal": false
-                }
-            }
-        ],
-        "indexes": [],
-        "listRule": "",
-        "viewRule": null,
-        "createRule": null,
-        "updateRule": null,
-        "deleteRule": null,
-        "options": {}
-    },
-    {
-        "id": "4rican7saizg27k",
-        "name": "topic_feed",
-        "type": "base",
-        "system": false,
-        "schema": [
-            {
-                "system": false,
-                "id": "5fhjohjz",
-                "name": "content",
-                "type": "editor",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "convertUrls": false
-                }
-            },
-            {
-                "system": false,
-                "id": "2cymhvzx",
-                "name": "topic",
-                "type": "relation",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "collectionId": "qbwxccto38j3kil",
-                    "cascadeDelete": false,
-                    "minSelect": null,
-                    "maxSelect": 1,
-                    "displayFields": null
-                }
-            }
-        ],
-        "indexes": [],
-        "listRule": "",
-        "viewRule": "",
-        "createRule": null,
-        "updateRule": null,
-        "deleteRule": null,
-        "options": {}
-    },
-    {
-        "id": "qbwxccto38j3kil",
-        "name": "topics",
-        "type": "base",
-        "system": false,
-        "schema": [
-            {
-                "system": false,
-                "id": "yep6ia4j",
-                "name": "title",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "6drzr9x6",
+                "id": "vulmejhb",
                 "name": "locations",
                 "type": "select",
                 "required": false,
@@ -205,210 +144,50 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "m2manwlo",
-                "name": "classes",
-                "type": "text",
+                "id": "yea2b89r",
+                "name": "lastVisit",
+                "type": "date",
                 "required": false,
                 "presentable": false,
                 "unique": false,
                 "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
+                    "min": "",
+                    "max": ""
                 }
             },
             {
                 "system": false,
-                "id": "xb4kxbsf",
-                "name": "status",
-                "type": "select",
+                "id": "pppaz0ky",
+                "name": "_raw",
+                "type": "json",
                 "required": false,
                 "presentable": false,
                 "unique": false,
                 "options": {
-                    "maxSelect": 1,
-                    "values": [
-                        "none",
-                        "ongoing",
-                        "done"
-                    ]
-                }
-            },
-            {
-                "system": false,
-                "id": "7ptcjjml",
-                "name": "highlight",
-                "type": "bool",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {}
-            }
-        ],
-        "indexes": [],
-        "listRule": "",
-        "viewRule": null,
-        "createRule": null,
-        "updateRule": null,
-        "deleteRule": null,
-        "options": {}
-    },
-    {
-        "id": "h4h7dp559icc6x4",
-        "name": "council_members",
-        "type": "base",
-        "system": false,
-        "schema": [
-            {
-                "system": false,
-                "id": "ufshaevm",
-                "name": "name",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "tydoiugl",
-                "name": "role",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "mlugpes9",
-                "name": "image",
-                "type": "file",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "mimeTypes": [],
-                    "thumbs": [],
-                    "maxSelect": 1,
-                    "maxSize": 5242880,
-                    "protected": false
-                }
-            },
-            {
-                "system": false,
-                "id": "uqllfwpg",
-                "name": "email",
-                "type": "email",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "exceptDomains": [],
-                    "onlyDomains": []
-                }
-            },
-            {
-                "system": false,
-                "id": "8adosei0",
-                "name": "highlight",
-                "type": "bool",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {}
-            }
-        ],
-        "indexes": [],
-        "listRule": "@request.auth.id != \"\"",
-        "viewRule": null,
-        "createRule": null,
-        "updateRule": null,
-        "deleteRule": null,
-        "options": {}
-    },
-    {
-        "id": "up1c3fiku9xtzpj",
-        "name": "commissions",
-        "type": "base",
-        "system": false,
-        "schema": [
-            {
-                "system": false,
-                "id": "3fvk5wjj",
-                "name": "name",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "gbtlmzn6",
-                "name": "description",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "z2ip659l",
-                "name": "leader",
-                "type": "relation",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "collectionId": "89g2dij42qnxxkf",
-                    "cascadeDelete": false,
-                    "minSelect": null,
-                    "maxSelect": 1,
-                    "displayFields": null
-                }
-            },
-            {
-                "system": false,
-                "id": "jpbllujc",
-                "name": "council_leader",
-                "type": "relation",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "collectionId": "h4h7dp559icc6x4",
-                    "cascadeDelete": false,
-                    "minSelect": null,
-                    "maxSelect": 1,
-                    "displayFields": null
+                    "maxSize": 2000000
                 }
             }
         ],
         "indexes": [],
-        "listRule": "@request.auth.id != \"\"",
-        "viewRule": null,
-        "createRule": null,
-        "updateRule": null,
+        "listRule": "id = @request.auth.id",
+        "viewRule": "id = @request.auth.id",
+        "createRule": "",
+        "updateRule": "@request.data.username:isset = false && @request.data.email:isset = false && @request.data.firstName:isset = false && @request.data.lastName:isset = false && @request.data.classes:isset = false && @request.data.isLocalStudent:isset = false && @request.data.isLocalTenant:isset = false",
         "deleteRule": null,
-        "options": {}
+        "options": {
+            "allowEmailAuth": false,
+            "allowOAuth2Auth": true,
+            "allowUsernameAuth": false,
+            "exceptEmailDomains": null,
+            "manageRule": null,
+            "minPasswordLength": 8,
+            "onlyEmailDomains": [
+                "bzwu.ch",
+                "cl02.ch"
+            ],
+            "onlyVerified": true,
+            "requireEmail": false
+        }
     },
     {
         "id": "89g2dij42qnxxkf",
@@ -501,21 +280,49 @@ PocketBase Collections:
         "options": {}
     },
     {
-        "id": "s8yhwxi623agg47",
-        "name": "submissions",
+        "id": "up1c3fiku9xtzpj",
+        "name": "commissions",
         "type": "base",
         "system": false,
         "schema": [
             {
                 "system": false,
-                "id": "ztx9cwhg",
-                "name": "createdBy",
-                "type": "relation",
-                "required": true,
+                "id": "3fvk5wjj",
+                "name": "name",
+                "type": "text",
+                "required": false,
                 "presentable": false,
                 "unique": false,
                 "options": {
-                    "collectionId": "_pb_users_auth_",
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "gbtlmzn6",
+                "name": "description",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "z2ip659l",
+                "name": "leader",
+                "type": "relation",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "89g2dij42qnxxkf",
                     "cascadeDelete": false,
                     "minSelect": null,
                     "maxSelect": 1,
@@ -524,8 +331,220 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "hgiuvktr",
-                "name": "content",
+                "id": "jpbllujc",
+                "name": "council_leader",
+                "type": "relation",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "h4h7dp559icc6x4",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            },
+            {
+                "system": false,
+                "id": "wwgszywk",
+                "name": "contribute_post",
+                "type": "relation",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "aebnoivrvfe7ar9",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\"",
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "b2ge38fi081z6ey",
+        "name": "contribution_options",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "uly5cxlf",
+                "name": "text",
+                "type": "text",
+                "required": true,
+                "presentable": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "etey2bze",
+                "name": "post",
+                "type": "relation",
+                "required": true,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "aebnoivrvfe7ar9",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\"",
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "h4h7dp559icc6x4",
+        "name": "council_members",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "ufshaevm",
+                "name": "name",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "tydoiugl",
+                "name": "description",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "mlugpes9",
+                "name": "image",
+                "type": "file",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "mimeTypes": [],
+                    "thumbs": [],
+                    "maxSelect": 1,
+                    "maxSize": 5242880,
+                    "protected": false
+                }
+            },
+            {
+                "system": false,
+                "id": "uqllfwpg",
+                "name": "email",
+                "type": "email",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "exceptDomains": [],
+                    "onlyDomains": []
+                }
+            },
+            {
+                "system": false,
+                "id": "8adosei0",
+                "name": "highlight",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "system": false,
+                "id": "ngjlkciw",
+                "name": "role",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\"",
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "3vnxvt6o1i915o3",
+        "name": "crash_logs",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "t5bqavzw",
+                "name": "error",
+                "type": "json",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSize": 2000000
+                }
+            },
+            {
+                "system": false,
+                "id": "szo0twyh",
+                "name": "errorDetails",
+                "type": "json",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSize": 2000000
+                }
+            },
+            {
+                "system": false,
+                "id": "ibcckcpx",
+                "name": "authRecord",
                 "type": "text",
                 "required": false,
                 "presentable": false,
@@ -540,7 +559,174 @@ PocketBase Collections:
         "indexes": [],
         "listRule": null,
         "viewRule": null,
-        "createRule": "@request.data.createdBy = @request.auth.id",
+        "createRule": "@request.auth.id != \"\"",
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "jucxeamfsvx0w0z",
+        "name": "intro_faq",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "0wbfkuru",
+                "name": "question",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "anuzxx4o",
+                "name": "answer",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "3hnhg6fc",
+                "name": "order",
+                "type": "number",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "noDecimal": true
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": "",
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "uvz5gzs6alsaivc",
+        "name": "links",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "fezykdxr",
+                "name": "label",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "qoyvifz5",
+                "name": "url",
+                "type": "url",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "exceptDomains": null,
+                    "onlyDomains": null
+                }
+            },
+            {
+                "system": false,
+                "id": "h1k10ydy",
+                "name": "preview",
+                "type": "file",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "mimeTypes": [],
+                    "thumbs": [],
+                    "maxSelect": 1,
+                    "maxSize": 5242880,
+                    "protected": false
+                }
+            },
+            {
+                "system": false,
+                "id": "riuyqair",
+                "name": "color",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": 7,
+                    "max": 7,
+                    "pattern": "#[\\dA-Fa-f]{5}"
+                }
+            },
+            {
+                "system": false,
+                "id": "c1q3qvdr",
+                "name": "classes",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "siapriw0",
+                "name": "order",
+                "type": "number",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "noDecimal": false
+                }
+            },
+            {
+                "system": false,
+                "id": "0kvcfsdo",
+                "name": "teacherOnly",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\"",
+        "viewRule": null,
+        "createRule": null,
         "updateRule": null,
         "deleteRule": null,
         "options": {}
@@ -650,42 +836,24 @@ PocketBase Collections:
         "options": {}
     },
     {
-        "id": "aebnoivrvfe7ar9",
-        "name": "posts",
+        "id": "sqhgsqky8n92ms1",
+        "name": "notices",
         "type": "base",
         "system": false,
         "schema": [
             {
                 "system": false,
-                "id": "0pjj55rt",
-                "name": "title",
-                "type": "text",
+                "id": "jz9ph5uy",
+                "name": "visible",
+                "type": "bool",
                 "required": false,
                 "presentable": false,
                 "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
+                "options": {}
             },
             {
                 "system": false,
-                "id": "glmbdwuk",
-                "name": "subtitle",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "0ymdzqmq",
+                "id": "4jywxq7m",
                 "name": "content",
                 "type": "editor",
                 "required": false,
@@ -697,112 +865,40 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "akxze3va",
-                "name": "locations",
+                "id": "yeaocyhg",
+                "name": "link",
+                "type": "url",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "exceptDomains": null,
+                    "onlyDomains": null
+                }
+            },
+            {
+                "system": false,
+                "id": "0yn3etml",
+                "name": "key",
                 "type": "select",
                 "required": false,
                 "presentable": false,
                 "unique": false,
                 "options": {
-                    "maxSelect": 2,
+                    "maxSelect": 1,
                     "values": [
-                        "Wil",
-                        "Uzwil",
-                        "Flawil"
+                        "general",
+                        "timetable",
+                        "menu",
+                        "news",
+                        "links",
+                        "topics"
                     ]
                 }
-            },
-            {
-                "system": false,
-                "id": "phjzlefz",
-                "name": "published",
-                "type": "bool",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {}
-            },
-            {
-                "system": false,
-                "id": "10za2aup",
-                "name": "image",
-                "type": "file",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "mimeTypes": [
-                        "image/png",
-                        "image/jpeg"
-                    ],
-                    "thumbs": [
-                        "720x720"
-                    ],
-                    "maxSelect": 1,
-                    "maxSize": 5242880,
-                    "protected": false
-                }
             }
         ],
         "indexes": [],
-        "listRule": "@request.auth.id != \"\" && published = true",
-        "viewRule": "@request.auth.id != \"\"",
-        "createRule": null,
-        "updateRule": null,
-        "deleteRule": null,
-        "options": {}
-    },
-    {
-        "id": "jucxeamfsvx0w0z",
-        "name": "intro_faq",
-        "type": "base",
-        "system": false,
-        "schema": [
-            {
-                "system": false,
-                "id": "0wbfkuru",
-                "name": "question",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "anuzxx4o",
-                "name": "answer",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
-                "system": false,
-                "id": "3hnhg6fc",
-                "name": "order",
-                "type": "number",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "noDecimal": true
-                }
-            }
-        ],
-        "indexes": [],
-        "listRule": "",
+        "listRule": null,
         "viewRule": null,
         "createRule": null,
         "updateRule": null,
@@ -810,15 +906,50 @@ PocketBase Collections:
         "options": {}
     },
     {
-        "id": "_pb_users_auth_",
-        "name": "users",
-        "type": "auth",
+        "id": "73q3ke6ieaycaqc",
+        "name": "page_visit",
+        "type": "base",
         "system": false,
         "schema": [
             {
                 "system": false,
-                "id": "users_name",
-                "name": "firstName",
+                "id": "9e58oz8p",
+                "name": "user",
+                "type": "relation",
+                "required": true,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "_pb_users_auth_",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            },
+            {
+                "system": false,
+                "id": "clwswgsh",
+                "name": "page",
+                "type": "select",
+                "required": true,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "values": [
+                        "home",
+                        "topics",
+                        "council",
+                        "contribute",
+                        "news"
+                    ]
+                }
+            },
+            {
+                "system": false,
+                "id": "ld6qsxhd",
+                "name": "external_url",
                 "type": "text",
                 "required": false,
                 "presentable": false,
@@ -831,8 +962,8 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "sfdbba3j",
-                "name": "lastName",
+                "id": "tldf6q2k",
+                "name": "suffix",
                 "type": "text",
                 "required": false,
                 "presentable": false,
@@ -845,93 +976,24 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "v5jbjpgz",
-                "name": "userSelectedClasses",
+                "id": "eilxwjnk",
+                "name": "props",
                 "type": "json",
                 "required": false,
                 "presentable": false,
                 "unique": false,
                 "options": {
                     "maxSize": 2000000
-                }
-            },
-            {
-                "system": false,
-                "id": "tnublb2m",
-                "name": "classes",
-                "type": "json",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "maxSize": 2000000
-                }
-            },
-            {
-                "system": false,
-                "id": "edjrws96",
-                "name": "isLocalTenant",
-                "type": "bool",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {}
-            },
-            {
-                "system": false,
-                "id": "qbsyjzbm",
-                "name": "isLocalStudent",
-                "type": "bool",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {}
-            },
-            {
-                "system": false,
-                "id": "gmlxo9r0",
-                "name": "introComplete",
-                "type": "bool",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {}
-            },
-            {
-                "system": false,
-                "id": "ddh5vc2c",
-                "name": "teacherCode",
-                "type": "text",
-                "required": false,
-                "presentable": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
                 }
             }
         ],
         "indexes": [],
-        "listRule": "id = @request.auth.id",
-        "viewRule": "id = @request.auth.id",
-        "createRule": "",
-        "updateRule": "@request.data.username:isset = false && @request.data.email:isset = false && @request.data.firstName:isset = false && @request.data.lastName:isset = false && @request.data.classes:isset = false && @request.data.isLocalStudent:isset = false && @request.data.isLocalTenant:isset = false",
+        "listRule": null,
+        "viewRule": null,
+        "createRule": "@request.auth.id = @request.data.user.id",
+        "updateRule": null,
         "deleteRule": null,
-        "options": {
-            "allowEmailAuth": true,
-            "allowOAuth2Auth": true,
-            "allowUsernameAuth": false,
-            "exceptEmailDomains": null,
-            "manageRule": null,
-            "minPasswordLength": 8,
-            "onlyEmailDomains": [
-                "bzwu.ch",
-                "cl02.ch"
-            ],
-            "onlyVerified": false,
-            "requireEmail": false
-        }
+        "options": {}
     },
     {
         "id": "3pkg1c1p9ployci",
@@ -1137,24 +1199,42 @@ PocketBase Collections:
         "options": {}
     },
     {
-        "id": "sqhgsqky8n92ms1",
-        "name": "notices",
+        "id": "aebnoivrvfe7ar9",
+        "name": "posts",
         "type": "base",
         "system": false,
         "schema": [
             {
                 "system": false,
-                "id": "jz9ph5uy",
-                "name": "visible",
-                "type": "bool",
+                "id": "0pjj55rt",
+                "name": "title",
+                "type": "text",
                 "required": false,
                 "presentable": false,
                 "unique": false,
-                "options": {}
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
             },
             {
                 "system": false,
-                "id": "4jywxq7m",
+                "id": "glmbdwuk",
+                "name": "subtitle",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "0ymdzqmq",
                 "name": "content",
                 "type": "editor",
                 "required": false,
@@ -1166,8 +1246,290 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "yeaocyhg",
-                "name": "link",
+                "id": "akxze3va",
+                "name": "locations",
+                "type": "select",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 2,
+                    "values": [
+                        "Wil",
+                        "Uzwil",
+                        "Flawil"
+                    ]
+                }
+            },
+            {
+                "system": false,
+                "id": "phjzlefz",
+                "name": "published",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "system": false,
+                "id": "10za2aup",
+                "name": "image",
+                "type": "file",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "mimeTypes": [
+                        "image/png",
+                        "image/jpeg"
+                    ],
+                    "thumbs": [
+                        "720x720"
+                    ],
+                    "maxSelect": 1,
+                    "maxSize": 5242880,
+                    "protected": false
+                }
+            },
+            {
+                "system": false,
+                "id": "wekxuuft",
+                "name": "classes",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\" && published = true",
+        "viewRule": "@request.auth.id != \"\"",
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "s8yhwxi623agg47",
+        "name": "submissions",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "ztx9cwhg",
+                "name": "createdBy",
+                "type": "relation",
+                "required": true,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "_pb_users_auth_",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            },
+            {
+                "system": false,
+                "id": "hgiuvktr",
+                "name": "content",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": null,
+        "viewRule": null,
+        "createRule": "@request.data.createdBy = @request.auth.id",
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "4rican7saizg27k",
+        "name": "topic_feed",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "5fhjohjz",
+                "name": "content",
+                "type": "editor",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "convertUrls": false
+                }
+            },
+            {
+                "system": false,
+                "id": "2cymhvzx",
+                "name": "topic",
+                "type": "relation",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "qbwxccto38j3kil",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\"",
+        "viewRule": "@request.auth.id != \"\"",
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "qbwxccto38j3kil",
+        "name": "topics",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "yep6ia4j",
+                "name": "title",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "6drzr9x6",
+                "name": "locations",
+                "type": "select",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 3,
+                    "values": [
+                        "Wil",
+                        "Uzwil",
+                        "Flawil"
+                    ]
+                }
+            },
+            {
+                "system": false,
+                "id": "m2manwlo",
+                "name": "classes",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "xb4kxbsf",
+                "name": "status",
+                "type": "select",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "values": [
+                        "none",
+                        "ongoing",
+                        "done"
+                    ]
+                }
+            },
+            {
+                "system": false,
+                "id": "7ptcjjml",
+                "name": "highlight",
+                "type": "bool",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {}
+            }
+        ],
+        "indexes": [],
+        "listRule": "@request.auth.id != \"\"",
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "0zlb40z9hc8nat6",
+        "name": "url_submissions",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "system": false,
+                "id": "s2kxxrmz",
+                "name": "user",
+                "type": "relation",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "collectionId": "_pb_users_auth_",
+                    "cascadeDelete": false,
+                    "minSelect": null,
+                    "maxSelect": 1,
+                    "displayFields": null
+                }
+            },
+            {
+                "system": false,
+                "id": "7slyet4u",
+                "name": "description",
+                "type": "text",
+                "required": false,
+                "presentable": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "system": false,
+                "id": "uvhrpjmy",
+                "name": "url",
                 "type": "url",
                 "required": false,
                 "presentable": false,
@@ -1179,29 +1541,19 @@ PocketBase Collections:
             },
             {
                 "system": false,
-                "id": "0yn3etml",
-                "name": "key",
-                "type": "select",
+                "id": "bsjfbtuy",
+                "name": "handled",
+                "type": "bool",
                 "required": false,
                 "presentable": false,
                 "unique": false,
-                "options": {
-                    "maxSelect": 1,
-                    "values": [
-                        "general",
-                        "timetable",
-                        "menu",
-                        "news",
-                        "links",
-                        "topics"
-                    ]
-                }
+                "options": {}
             }
         ],
         "indexes": [],
         "listRule": null,
         "viewRule": null,
-        "createRule": null,
+        "createRule": "@request.auth.id = @request.data.user.id",
         "updateRule": null,
         "deleteRule": null,
         "options": {}
