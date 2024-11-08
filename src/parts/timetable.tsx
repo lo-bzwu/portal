@@ -86,7 +86,9 @@ function Timetable({ user }: { user: UserType }) {
                   teachers: isTeacher ? user.teacherCode : "",
                 }
               : {
-                  classes: isTeacher ? "" : (userClasses ?? []).join(","),
+                  classes: isTeacher
+                    ? ""
+                    : (user.userSelectedClasses ?? []).join(","),
                 }
           ).toString()
       )
