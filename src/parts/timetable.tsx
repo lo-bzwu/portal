@@ -29,7 +29,7 @@ function Timetable({ user }: { user: UserType }) {
   const [loading, setLoading] = useState<boolean>(true);
 
   const userClasses = useMemo(
-    () => user.userSelectedClasses ?? [],
+    () => (user.userSelectedClasses ? [...user.userSelectedClasses] : []),
     [user.userSelectedClasses]
   );
 
@@ -112,7 +112,7 @@ function Timetable({ user }: { user: UserType }) {
     }, 1000 * 60);
 
     return () => clearInterval(interval);
-  }, [userClasses, isTeacher, user.teacherCode]);
+  }, [userClasses, isTeacher, user.teacherCode, user.userSelectedClasses]);
 
   const weekday = useMemo(() => selectedDay.getDay(), [selectedDay]);
   const dateString = useMemo(() => makeDateString(selectedDay), [selectedDay]);
