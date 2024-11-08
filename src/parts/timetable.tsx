@@ -76,6 +76,7 @@ function Timetable({ user }: { user: UserType }) {
     }
 
     const refresh = (initial = false) => {
+      console.log("refreshing...");
       fetch(
         pb.buildUrl("/api/proxy/lessons") +
           "?" +
