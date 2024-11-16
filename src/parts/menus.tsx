@@ -57,7 +57,7 @@ function Menus() {
               (now.getTime() - data.updated_at * 1000) / 1000 / 60 / 60 / 24 <
                 4)
           )
-            setWeekday(0);
+            setWeekday(1);
           result.menus = data.menus;
           result.extensions = data.extensions;
           setData(result);
