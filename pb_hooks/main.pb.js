@@ -1,5 +1,5 @@
 
-onRecordAfterAuthWithOAuth2Request((e) => {
+onRecordAuthWithOAuth2Request((e) => {
     // console.log(e.httpContext)
     // console.log(e.providerName)
     // console.log(e.providerClient)
@@ -12,7 +12,10 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     const givenName = e.oAuth2User.rawUser.givenName;
     const surname = e.oAuth2User.rawUser.surname
 
-
+    if (!e.record) {
+      e.record = new Record($app.findCollectionByNameOrId("users"))
+    }
+    
     const previousUserSelectedClasses = e.record.get("userSelectedClasses");
     const hasUserSelectedClasses = Array.isArray(previousUserSelectedClasses) && previousUserSelectedClasses?.length > 0
 
@@ -25,7 +28,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
     const userNameSuffix = '-' + surname.slice(0, 2).toUpperCase() + givenName.slice(0, 2).toUpperCase() + "-" + e.oAuth2User.id.slice(0, 4)
     e.record.setUsername((isLocalTenant ? 'teach' : 'ext') + userNameSuffix);
 
-    const save = () => $app.dao().saveRecord(e.record);
+    const save = () => $app.save(e.record);
 
     if (!isLocalTenant) return save();
 
@@ -50,7 +53,7 @@ onRecordAfterAuthWithOAuth2Request((e) => {
 
 })
 
-onRecordBeforeCreateRequest((e) => {
+onRecordCreate((e) => {
     const pushover_user = process.env.PUSHOVER_USER
     const pushover_token = process.env.PUSHOVER_TOKEN;
     if (!pushover_user || !pushover_token) return;
