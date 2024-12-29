@@ -6,7 +6,7 @@ import { pb } from "../pb";
 function ClassSelectorComponent({ user }: { user: UserType }) {
   const [newClass, setNewClass] = useState("");
   const [userClasses, setUserClasses] = useState<string[]>(
-    user.userSelectedClasses ?? []
+    user.userSelectedClasses ?? [],
   );
 
   const [availableClasses, setAvailableClasses] = useState<string[]>([]);
@@ -14,7 +14,7 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
     .filter(
       (availableClass) =>
         availableClass.toLowerCase().includes(newClass.toLowerCase()) &&
-        !(userClasses ?? [])?.includes(availableClass)
+        !(userClasses ?? [])?.includes(availableClass),
     )
     .slice(0, 7);
 
@@ -23,7 +23,7 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
       .then((resp) => resp.text())
       .then((resp) => {
         setAvailableClasses(
-          resp.split("\n").sort((a, b) => b.localeCompare(a))
+          resp.split("\n").sort((a, b) => b.localeCompare(a)),
         );
       });
   }, []);
@@ -60,10 +60,10 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
                           ...(userClasses ?? []),
                         ],
                       },
-                      { fields: "userSelectedClasses" }
+                      { fields: "userSelectedClasses" },
                     )
                     .then(({ userSelectedClasses }) =>
-                      setUserClasses(userSelectedClasses ?? [])
+                      setUserClasses(userSelectedClasses ?? []),
                     );
                   setNewClass("");
                 }}
@@ -88,13 +88,13 @@ function ClassSelectorComponent({ user }: { user: UserType }) {
                   user.id,
                   {
                     userSelectedClasses: userClasses.filter(
-                      (item) => item !== c
+                      (item) => item !== c,
                     ),
                   },
-                  { fields: "userSelectedClasses" }
+                  { fields: "userSelectedClasses" },
                 )
                 .then(({ userSelectedClasses }) =>
-                  setUserClasses(userSelectedClasses ?? [])
+                  setUserClasses(userSelectedClasses ?? []),
                 );
             }}
           >

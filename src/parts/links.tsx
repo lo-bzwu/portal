@@ -13,7 +13,7 @@ function lightenColor(color: string, percent: number) {
   B = Math.round(B + (255 - B) * percent);
 
   const RR = R.toString(16).toString().padStart(2, "0").replace("-", "");
-  const GG = G.toString(16).toString().padStart(2, "0").replace("-", "-");
+  const GG = G.toString(16).toString().padStart(2, "0").replace("-", "");
   const BB = B.toString(16).toString().padStart(2, "0").replace("-", "");
 
   return "#" + RR + GG + BB;
@@ -53,7 +53,7 @@ function Links({
           : "teacherOnly = false && classes = ''" +
             (classes.length > 0 ? " || " : "") +
             classes
-              .map((c) => 'classes ~ "' + c.replace('"', "") + '"')
+              .map((c) => 'classes ~ "' + c.replaceAll('"', "") + '"')
               .join(" || "),
       })
       .then((links) => {
