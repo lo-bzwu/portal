@@ -69,7 +69,7 @@ function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const [user, setUser] = useState<null | UserType>(
-    pb.authStore.model as UserType
+    pb.authStore.record ? (pb.authStore.record as unknown as UserType) : null
   );
   const [page, setPage] = useState(
     (() => {
@@ -125,9 +125,9 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      startWatching(pb.authStore.model?.id);
-      setUser(pb.authStore.model as UserType);
+    } else if (pb.authStore.record) {
+      startWatching(pb.authStore.record.id);
+      setUser(pb.authStore.record as unknown as UserType);
 
       // skip auth refresh on dev
       if (import.meta.env.DEV) return;
@@ -178,13 +178,14 @@ function App() {
     return (
       <Setup
         user={user}
-        handleSave={(newTeacherCode, locations) => {
+        handleSave={(newTeacherCode, locations, userSelectedClasses) => {
           setUser((u) => {
             if (!u) return u;
             return {
               ...u,
               introComplete: true,
               teacherCode: newTeacherCode,
+              userSelectedClasses: userSelectedClasses,
               locations,
             };
           });

@@ -9,7 +9,9 @@ interface PageVisit {
 }
 
 const logPageVisit = (visit: Omit<PageVisit, "user">) => {
-  const pageVisit: PageVisit = { ...visit, user: pb.authStore.model?.id };
+  // cant create page visit record without user info
+  if (!pb.authStore.record) return;
+  const pageVisit: PageVisit = { ...visit, user: pb.authStore.record?.id };
   pb.collection("page_visit").create<PageVisit>(pageVisit);
 };
 
