@@ -26,7 +26,7 @@ onRecordAuthWithOAuth2Request((e) => {
 
     e.record.set('classes', []);
     const userNameSuffix = '-' + surname.slice(0, 2).toUpperCase() + givenName.slice(0, 2).toUpperCase() + "-" + e.oAuth2User.id.slice(0, 4)
-    e.record.setUsername((isLocalTenant ? 'teach' : 'ext') + userNameSuffix);
+    e.record.set("username", (isLocalTenant ? 'teach' : 'ext') + userNameSuffix);
 
     const save = () => $app.save(e.record);
 
@@ -44,7 +44,7 @@ onRecordAuthWithOAuth2Request((e) => {
         return save()
     }
 
-    e.record.setUsername('stud' + userNameSuffix);
+    e.record.set('username', 'stud' + userNameSuffix);
     e.record.set('isLocalStudent', true);
     e.record.set('classes', classes);
     if (!hasUserSelectedClasses) e.record.set('userSelectedClasses', classes);
