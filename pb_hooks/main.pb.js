@@ -30,7 +30,7 @@ onRecordAuthWithOAuth2Request((e) => {
     e.record.set("username", (isLocalTenant ? 'teach' : 'ext') + userNameSuffix);
     e.record.set("email", e.oAuth2User.email);
 
-    const save = () => $app.save(e.record);
+    const save = () => { $app.save(e.record); e.next() };
 
     if (!isLocalTenant) return save();
 
@@ -67,4 +67,7 @@ onRecordCreate((e) => {
         headers: { "content-type": "application/json" },
         timeout: 120, // in seconds
     })
+
+    e.next()
+
 }, "submissions", "url_submissions", "crash_logs")
