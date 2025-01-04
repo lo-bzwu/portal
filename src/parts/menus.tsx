@@ -37,25 +37,18 @@ function Menus() {
   const [errors, setErrors] = useState<Record<number, string>>({});
 
   useEffect(() => {
-    fetch(pb.buildUrl("/api/proxy/menus/current.json"))
+    fetch(pb.buildURL("/api/proxy/menus/current.json"))
       .then((r) => r.json())
       .then((data) => {
         const result: MenuState = { menus: [], extensions: [] };
         if (data.ok) {
           const now = new Date();
           const weekday = now.getDay();
-          console.log(
-            "menu last updated",
-            (now.getTime() - data.updated_at * 1000) / 1000 / 60 / 60 / 24,
-            "days ago"
-          );
           // snap to monday of first week if the menu was updated recently (likely on friday), otherwise monday of next week will be used
           if (
-            weekday === 0 ||
-            (weekday === 6 &&
-              data.updated_at &&
-              (now.getTime() - data.updated_at * 1000) / 1000 / 60 / 60 / 24 <
-                4)
+            (weekday === 0 || weekday === 6 || weekday === 5) &&
+            data.updated_at &&
+            (now.getTime() - data.updated_at * 1000) / 1000 / 60 / 60 / 24 < 3
           )
             setWeekday(1);
           result.menus = data.menus;
@@ -69,7 +62,7 @@ function Menus() {
             return { ...prev };
           });
         }
-        fetch(pb.buildUrl("/api/proxy/menus/next.json"))
+        fetch(pb.buildURL("/api/proxy/menus/next.json"))
           .then((r) => r.json())
           .then((next) => {
             if (next.ok) {

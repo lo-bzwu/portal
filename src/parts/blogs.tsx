@@ -25,7 +25,9 @@ function News(props: {
         filter:
           'published = true && (classes = ""' +
           (props.userClasses ?? [])
-            .map((userClass) => ` || classes ~ "${userClass.replaceAll('"', "")}"`)
+            .map(
+              (userClass) => ` || classes ~ "${userClass.replaceAll('"', "")}"`
+            )
             .join("") +
           ")",
       })
@@ -65,7 +67,7 @@ function News(props: {
 
                 <img
                   className="object-cover w-full h-48"
-                  src={pb.getFileUrl(post, post.image)}
+                  src={pb.files.getURL(post, post.image)}
                   alt={post.title}
                 />
               </div>

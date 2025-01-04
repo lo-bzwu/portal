@@ -78,7 +78,7 @@ function Timetable({ user }: { user: UserType }) {
     const refresh = (initial = false) => {
       console.log("refreshing...");
       fetch(
-        pb.buildUrl("/api/proxy/lessons") +
+        pb.buildURL("/api/proxy/lessons") +
           "?" +
           new URLSearchParams(
             isTeacher
@@ -158,7 +158,6 @@ function Timetable({ user }: { user: UserType }) {
   }, [data, dateString]);
 
   const now = new Date();
-  console.log("rerendered");
 
   return (
     <Panel

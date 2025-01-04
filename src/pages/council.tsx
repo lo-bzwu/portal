@@ -119,7 +119,7 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
                 <div className="flex gap-4 justify-between items-center">
                   <img
                     className="object-cover w-12 rounded-xl md:w-16 aspect-square"
-                    src={pb.getFileUrl(member, member.image, {
+                    src={pb.files.getURL(member, member.image, {
                       thumb: "100x100",
                     })}
                     alt={"Bild von " + member.name}
@@ -273,7 +273,7 @@ const Council = ({ navigate }: { navigate: NavigateFunc }) => {
                         title={member.name}
                         data-is-leader={commission.leader === member.id}
                         className="-ml-3 h-10 w-10 rounded-full transition-transform cursor-pointer hover:scale-125 hover:z-10 border-brand-theme data-[is-leader=true]:border-2"
-                        src={pb.getFileUrl(member, member.image, {
+                        src={pb.files.getURL(member, member.image, {
                           thumb: "100x100",
                         })}
                       />

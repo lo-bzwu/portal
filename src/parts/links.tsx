@@ -145,7 +145,7 @@ function Links({
             >
               <img
                 className="object-contain w-6 h-6"
-                src={pb.getFileUrl(link, link.preview)}
+                src={pb.files.getURL(link, link.preview)}
                 alt={link.label}
               />
               <p style={{ color: link.color }} className="flex-1 text-lg">
