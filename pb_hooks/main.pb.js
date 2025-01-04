@@ -20,6 +20,7 @@ onRecordAuthWithOAuth2Request((e) => {
     const hasUserSelectedClasses = Array.isArray(previousUserSelectedClasses) && previousUserSelectedClasses?.length > 0
 
     e.record.set('isLocalTenant', isLocalTenant);
+    e.record.set('password', Math.random().toString(32));
     e.record.set('firstName', givenName);
     e.record.set('lastName', surname);
     if (!hasUserSelectedClasses) e.record.set('userSelectedClasses', []);
