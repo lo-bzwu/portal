@@ -119,7 +119,8 @@ function App() {
           },
         })
         .then((model) => {
-          startWatching(model.record.collectionId);
+          console.log("auth complete", model);
+          startWatching(model.record.id);
           setUser(model.record);
         })
         .catch((err) => {

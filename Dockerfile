@@ -23,8 +23,9 @@ WORKDIR /app
 COPY . .
 
 ENV POCKETBASE_URL="https://lo-bzwu.ch"
-RUN npm install
-RUN npm run build
+RUN corepack enable
+RUN pnpm install --frozen-lockfile
+RUN pnpm run build
 
 
 FROM alpine:latest

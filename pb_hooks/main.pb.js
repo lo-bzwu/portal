@@ -13,9 +13,9 @@ onRecordAuthWithOAuth2Request((e) => {
     const surname = e.oAuth2User.rawUser.surname
 
     if (!e.record) {
-      e.record = new Record($app.findCollectionByNameOrId("users"))
+        e.record = new Record($app.findCollectionByNameOrId("users"))
     }
-    
+
     const previousUserSelectedClasses = e.record.get("userSelectedClasses");
     const hasUserSelectedClasses = Array.isArray(previousUserSelectedClasses) && previousUserSelectedClasses?.length > 0
 
@@ -28,6 +28,7 @@ onRecordAuthWithOAuth2Request((e) => {
     e.record.set('classes', []);
     const userNameSuffix = '-' + surname.slice(0, 2).toUpperCase() + givenName.slice(0, 2).toUpperCase() + "-" + e.oAuth2User.id.slice(0, 4)
     e.record.set("username", (isLocalTenant ? 'teach' : 'ext') + userNameSuffix);
+    e.record.set("email", e.oAuth2User.email);
 
     const save = () => $app.save(e.record);
 
