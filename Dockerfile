@@ -23,6 +23,10 @@ WORKDIR /app
 COPY . .
 
 ENV POCKETBASE_URL="https://lo-bzwu.ch"
+
+# fix npm's rotated signing keys
+RUN npm install -g corepack@latest
+
 RUN corepack enable
 RUN pnpm install --frozen-lockfile
 RUN pnpm run build
