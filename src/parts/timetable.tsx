@@ -315,7 +315,18 @@ function Timetable({ user }: { user: UserType }) {
                     </p>
                   </div>
                   <div className="flex gap-2.5">
-                    <p className="text-brand-theme group-data-[active=true]:text-white">
+                    <p
+                      className="text-brand-theme group-data-[active=true]:text-white"
+                      title={
+                        occurrence.start_time.slice(0, 2) +
+                        ":" +
+                        occurrence.start_time.slice(2, 4) +
+                        " – " +
+                        occurrence.end_time.slice(0, 2) +
+                        ":" +
+                        occurrence.end_time.slice(2, 4)
+                      }
+                    >
                       {occurrence.start_time.slice(0, 2)}:
                       {occurrence.start_time.slice(2, 4)}
                     </p>
